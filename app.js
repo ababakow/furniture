@@ -51,6 +51,9 @@ app.delete('/catalog/:category/:id', (req, res) => {
 });
 
 //==============================================
+app.get('/payment-and-delivery', (req, res) => {
+	res.render('payment-and-delivery');
+});
 app.get('/about', (req, res) => {
 	res.render('about');
 });
