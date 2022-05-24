@@ -1,2 +1,42 @@
 <% layout('/layouts/boilerplate') %> 
-    <h1>Контакти</h1>
+    <div class="card">
+        <div class="card-header bg-transparent border-success text-center">
+            <h4 class="my-3">Company name</h4>
+            <ul class="contacts">
+                <li>Adress</li>
+                <li><a href="tel:+380981234567">+38 (098) 123 4567</a></li>
+                <li>Email</li>
+            </ul>
+
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Напиши нам</h5>
+            <form action="">
+                <div class="row">
+                    <div class="col-6 mb-3">
+                        <label for="username" class="form-label">Ім'я</label>
+                        <input type="text" class="form-control" id="usrename">
+                    </div>
+                    <div class="col-6 mb-3">
+                        <label for="company" class="form-label">Компанія</label>
+                        <input type="text" class="form-control" id="company">
+                    </div>
+                    <div class="col-6 mb-3">
+                        <label for="e-mail" class="form-label">E-mail</label>
+                        <input type="email" class="form-control" id="e-mail">
+                    </div>
+                    <div class="col-6 mb-3">
+                        <label for="phone" class="form-label">Телефон</label>
+                        <input type="tel" class="form-control" id="phone">
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label for="message" class="form-label">Текст листа</label>
+                        <textarea type="text" class="form-control" rows="4" id="message"></textarea>
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <button class="btn btn-light btn-outline-success px-5 mx-auto">Відправити</button>
+                </div>
+            </form>
+        </div>
+    </div>

@@ -1,0 +1,13 @@
+header {
+	margin-bottom: 5rem;
+}
+
+/* =================================== */
+.contacts {
+	margin-left: 0;
+	padding-left: 0;
+}
+.contacts li {
+	list-style-type: none;
+}
+/* =================================== */
