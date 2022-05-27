@@ -6,7 +6,6 @@ const express = require('express');
 const app = express();
 const ejsMate = require('ejs-mate');
 const mongoose = require('mongoose');
-const mailer = require('./nodemailer/nodemailer');
 
 const catalogRoutes = require('./routes/catalog');
 const shopRoutes = require('./routes/shop');
