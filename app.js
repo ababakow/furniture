@@ -68,13 +68,40 @@ app.put('/catalog/:category/:id', (req, res) => {
 app.delete('/catalog/:category/:id', (req, res) => {
 	res.redirect('/catalog');
 });
-
 //==============================================
-app.get('/payment-and-delivery', (req, res) => {
-	res.render('payment-and-delivery');
+app.get('/shop', (req, res) => {
+	res.render('shop');
 });
-app.get('/about', (req, res) => {
-	res.render('about');
+app.get('/shop/new', (req, res) => {
+	res.render('shop/new');
+});
+app.post('/shop', (req, res) => {
+	res.redirect('/shop');
+});
+app.get('/shop/:category', (req, res) => {
+	const { category } = req.params;
+	res.render(`shop/${category}`);
+});
+app.get('/shop/:category/:id', (req, res) => {
+	const { category, id } = req.params;
+	res.render('shop/show', { category, id });
+});
+
+app.get('/shop/:category/:id/edit', (req, res) => {
+	res.render('shop/edit');
+});
+
+app.put('/shop/:category/:id', (req, res) => {
+	const { category, id } = req.params;
+	res.redirect(`/shop/${category}/${id}`);
+});
+
+app.delete('/shop/:category/:id', (req, res) => {
+	res.redirect('/shop');
+});
+//==============================================
+app.get('/actions', (req, res) => {
+	res.render('actions');
 });
 
 app.get('/contacts', (req, res) => {
