@@ -11,27 +11,27 @@
         </div>
         <div class="card-body">
             <h5 class="card-title">Напиши нам</h5>
-            <form action="">
+            <form action="/contacts" method="POST">
                 <div class="row">
                     <div class="col-6 mb-3">
-                        <label for="username" class="form-label">Ім'я</label>
-                        <input type="text" class="form-control" id="usrename">
+                        <label for="name" class="form-label">Ім'я</label>
+                        <input type="text" class="form-control" id="name" name="name">
                     </div>
                     <div class="col-6 mb-3">
                         <label for="company" class="form-label">Компанія</label>
-                        <input type="text" class="form-control" id="company">
+                        <input type="text" class="form-control" id="company" name="company">
                     </div>
                     <div class="col-6 mb-3">
-                        <label for="e-mail" class="form-label">E-mail</label>
-                        <input type="email" class="form-control" id="e-mail">
+                        <label for="email" class="form-label">E-mail</label>
+                        <input type="email" class="form-control" id="email" name="email">
                     </div>
                     <div class="col-6 mb-3">
                         <label for="phone" class="form-label">Телефон</label>
-                        <input type="tel" class="form-control" id="phone">
+                        <input type="tel" class="form-control" id="phone" name="phone">
                     </div>
                     <div class="col-12 mb-3">
                         <label for="message" class="form-label">Текст листа</label>
-                        <textarea type="text" class="form-control" rows="4" id="message"></textarea>
+                        <textarea type="text" class="form-control" rows="4" id="message" name="message"></textarea>
                     </div>
                 </div>
                 <div class="d-flex">

@@ -1,7 +1,12 @@
+if (process.env.NODE_ENV !== 'production') {
+	require('dotenv').config();
+}
+
 const express = require('express');
 const app = express();
 const ejsMate = require('ejs-mate');
 const mongoose = require('mongoose');
+const mailer = require('./nodemailer/nodemailer');
 
 const path = require('path');
 ////////////////////////////////////////////////////
@@ -19,6 +24,9 @@ app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 //-------------------------------------------------
+
+app.use(express.urlencoded({ extended: true }));
+//app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 ////////////////////////////////////////////////////
 
@@ -70,6 +78,10 @@ app.get('/about', (req, res) => {
 });
 
 app.get('/contacts', (req, res) => {
+	res.render('contacts');
+});
+app.post('/contacts', (req, res) => {
+	mailer.mailer(req.body);
 	res.render('contacts');
 });
 
