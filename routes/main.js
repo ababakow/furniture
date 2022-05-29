@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const mailer = require('./nodemailer/nodemailer');
+const mailer = require('../nodemailer/nodemailer');
 
 router.get('/', (req, res) => {
 	res.render('home');
