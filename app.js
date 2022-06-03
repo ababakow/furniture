@@ -6,11 +6,15 @@ const express = require('express');
 const app = express();
 const ejsMate = require('ejs-mate');
 const mongoose = require('mongoose');
+const session = require('express-session');
+const flash = require('connect-flash');
 
 const catalogRoutes = require('./routes/catalog');
 const shopRoutes = require('./routes/shop');
 const mainRoutes = require('./routes/main');
 const userRoutes = require('./routes/user');
+
+const AppError = require('./utils/appError');
 
 const path = require('path');
 ////////////////////////////////////////////////////
@@ -30,8 +34,26 @@ app.set('views', path.join(__dirname, 'views'));
 //-------------------------------------------------
 
 app.use(express.urlencoded({ extended: true }));
-//app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+
+const sessionConfig = {
+	secret: 'firsttimesecret',
+	resave: false,
+	saveUninitialized: true,
+	cookie: {
+		httpOnly: true,
+		expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+		maxAge: 1000 * 60 * 60 * 24 * 7
+	}
+};
+app.use(session(sessionConfig));
+
+app.use(flash());
+app.use((req, res, next) => {
+	res.locals.success = req.flash('success');
+	res.locals.error = req.flash('error');
+	next();
+});
 ////////////////////////////////////////////////////
 
 //==============================================
@@ -41,8 +63,14 @@ app.use('/', mainRoutes);
 app.use('/', userRoutes);
 //==============================================
 
-app.all('*', (req, res) => {
-	res.send('404 404 404');
+app.all('*', (req, res, next) => {
+	next(new AppError('Такої сторінки не існує', 404));
+});
+
+app.use((err, req, res, next) => {
+	const { statusCode = 500 } = err;
+	if (!err.message) err.message = 'Щось пійшло не так :(';
+	res.status(statusCode).render('error', { err });
 });
 ////////////////////////////////////////////////////
 app.listen(3000, () => {

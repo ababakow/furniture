@@ -1,2 +1,16 @@
 <% layout('/layouts/boilerplate') %> 
-    <h1>Каталог продукції</h1>
+<div class="row after-nav">
+    <h1><%= category %></h1>
+    <%-include('../partials/flash')%>
+    <% for(let product of products) { %>
+        <div class="card" style="width: 18rem;">
+            <img src="<%=product.image%>" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title"><%=product.title%></h5>
+                <p class="card-text"><%=product.description%></p>
+                <p class="card-text"><%=product.category%></p>
+                <a href="/catalog/<%=category%>/<%=product.id%>" class="btn btn-primary">Редагувати</a>
+            </div>
+        </div>
+    <% } %> 
+</div>
