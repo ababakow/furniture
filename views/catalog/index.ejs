@@ -1,6 +1,6 @@
 <% layout('/layouts/boilerplate') %> 
 <div class="row after-nav">
-    <h1><%= category %></h1>
+    <h1><%= products[0].categoryToUa() %></h1>
     <%-include('../partials/flash')%>
     <% for(let product of products) { %>
         <div class="card" style="width: 18rem;">
@@ -8,8 +8,8 @@
             <div class="card-body">
                 <h5 class="card-title"><%=product.title%></h5>
                 <p class="card-text"><%=product.description%></p>
-                <p class="card-text"><%=product.category%></p>
-                <a href="/catalog/<%=category%>/<%=product.id%>" class="btn btn-primary">Редагувати</a>
+                <p class="card-text"><%=product.categoryToUa()%></p>
+                <a href="/catalog/<%=product.id%>" class="btn btn-primary">Редагувати</a>
             </div>
         </div>
     <% } %> 
