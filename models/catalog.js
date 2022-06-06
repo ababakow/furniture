@@ -1,15 +1,12 @@
 const mongose = require('mongoose');
+const categories = require('../settings/categories.json');
 
-const categories = {
-	kitchens: 'Кухні',
-	wardrobes: 'Шафи',
-	living: 'Вітальні',
-	chests: 'Комоди та тумби',
-	hallways: 'Передпокої',
-	glass: 'Вироби зі скла'
-};
+const imageSchema = new mongose.Schema({
+	name: String,
+	url: String
+});
 
-const catalogSchema = new mongose.Schema({
+const productSchema = new mongose.Schema({
 	title: {
 		type: String,
 		required: true
@@ -20,13 +17,13 @@ const catalogSchema = new mongose.Schema({
 		enum: Object.keys(categories),
 		required: true
 	},
-	image: String
+	images: [ imageSchema ]
 });
 
-catalogSchema.methods.categoryToUa = function categoryToUa() {
+productSchema.methods.categoryToUa = function categoryToUa() {
 	return categories[this.category];
 };
 
-const Catalog = mongose.model('Catalog', catalogSchema);
+const Product = mongose.model('Product', productSchema);
 
-module.exports = Catalog;
+module.exports = Product;

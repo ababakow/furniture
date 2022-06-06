@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Catalog = require('../models/catalog');
+const Product = require('../models/catalog');
 
 const dbUrl = 'mongodb://localhost:27017/furniture';
 mongoose
@@ -12,16 +12,25 @@ mongoose
 	});
 
 const seedData = async () => {
-	await Catalog.deleteMany({});
-	for (let i = 0; i < 100; i++) {
+	await Product.deleteMany({});
+	for (let i = 0; i < 20; i++) {
 		const randCategory = Math.floor(Math.random() * 6);
 		const randImg = Math.floor(Math.random() * 3 + 1);
 
-		const product = new Catalog({
-			title: 'product1',
+		const product = new Product({
+			title: `product-${i}`,
 			description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-			category: Catalog.schema.path('category').enumValues[randCategory],
-			image: `/imgs/main/${randImg}.jpg`
+			category: Product.schema.path('category').enumValues[randCategory],
+			images: [
+				{
+					name: `${randImg}.jpg`,
+					url: `/imgs/main/${randImg}.jpg`
+				},
+				{
+					name: `${randImg + 1}.jpg`,
+					url: `/imgs/main/${randImg + 1}.jpg`
+				}
+			]
 		});
 
 		await product.save();

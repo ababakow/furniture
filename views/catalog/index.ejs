@@ -1,10 +1,21 @@
 <% layout('/layouts/boilerplate') %> 
 <div class="row after-nav">
-    <h1><%= products[0].categoryToUa() %></h1>
+    <div class="col-9">
+        <h1><%= category %></h1>
+    </div>
+    <div class="col-3 d-flex align-items-center justify-content-end">
+        <a href="/catalog/new" class="btn btn-success">Додати продукт</a>
+    </div>
+</div>
+<div class="row">
     <%-include('../partials/flash')%>
     <% for(let product of products) { %>
         <div class="card" style="width: 18rem;">
-            <img src="<%=product.image%>" class="card-img-top" alt="...">
+            <% if(product.images.length){ %> 
+                <img src="<%=product.images[0].url%>" class="card-img-top" alt="...">
+            <% } else { %> 
+                <img src="/imgs/navbar/logo.svg" style="background-color: blue;" class="card-img-top" alt="...">
+            <% } %> 
             <div class="card-body">
                 <h5 class="card-title"><%=product.title%></h5>
                 <p class="card-text"><%=product.description%></p>
@@ -13,4 +24,5 @@
             </div>
         </div>
     <% } %> 
+    <div class="after-nav"></div>
 </div>

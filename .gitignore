@@ -1,3 +1,4 @@
 node_modules/
 .env
-settings/
+settings/categories-old.json
+public/imgs/catalog

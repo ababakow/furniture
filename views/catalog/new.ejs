@@ -1,2 +1,34 @@
 <% layout('/layouts/boilerplate') %> 
-    <h1>Форма для додавання нового продукта</h1>
+<div class="row after-nav">
+    <h1>Дадати новий продукт</h1>
+    <div class="col-8 offset-2">
+        <form action="/catalog" method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="title" class="form-label">Назва</label>
+                <input type="text" class="form-control" id="title" name="title">
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Опис</label>
+                <input type="text" class="form-control" id="description" name="description">
+            </div>
+            <div class="mb-3">
+                <label for="category" class="form-label">Категорія</label>
+                <select class="form-select" id="category" name="category">
+                    <% for(let category of Object.keys(categories)){ %> 
+                        <option value="<%=category%>"><%=categories[category]%></option>
+                    <% } %> 
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="images" class="form-label">Фото</label>
+                <input type="file" class="form-control" id="images" name="images" multiple>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            
+        </form>
+        <img src="/imgs/catalog/64d2555ab85429397288c6d8691599a7" alt=""> 
+        <img src="/imgs/main/1.jpg" alt=""> 
+    </div>
+</div>
