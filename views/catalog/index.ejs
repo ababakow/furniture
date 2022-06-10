@@ -19,8 +19,9 @@
             <div class="card-body">
                 <h5 class="card-title"><%=product.title%></h5>
                 <p class="card-text"><%=product.description%></p>
-                <p class="card-text"><%=product.categoryToUa()%></p>
-                <a href="/catalog/<%=product.id%>" class="btn btn-primary">Редагувати</a>
+                <a href="/catalog?category=<%=product.category%>"><%=product.categoryToUa()%></a>
+                <br>
+                <a href="/catalog/<%=product.id%>" class="btn btn-primary">Перейти</a>
             </div>
         </div>
     <% } %> 

@@ -8,6 +8,7 @@ const ejsMate = require('ejs-mate');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const flash = require('connect-flash');
+const methodOverride = require('method-override');
 
 const catalogRoutes = require('./routes/catalog');
 const shopRoutes = require('./routes/shop');
@@ -35,6 +36,8 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(methodOverride('_method'));
 
 const sessionConfig = {
 	secret: 'firsttimesecret',

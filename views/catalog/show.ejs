@@ -1,5 +1,24 @@
 <% layout('/layouts/boilerplate') %> 
-<div class="row after-nav">
-    <h1 >Продукт: <%= id %></h1>
-    <p>Каталог/<%= category %>/<%= id %>  </p>
+<div class="row after-nav mb-5">
+    <%-include('../partials/flash')%>
+    <div class="col-6 offset-3">
+        <h5><%=product.title%></h5>
+        <div class="card" >
+            <div class="d-flex">
+                <% for (let img of product.images){ %> 
+                    <img src="<%=img.url%>" class="card-img-top" style="width:18rem">
+                <% } %> 
+            </div>
+            <div class="card-body">
+                <p class="card-text"><%=product.description%></p>
+                <a href="/catalog?category=<%=product.category%>"><%=product.categoryToUa()%></a>
+                <br>
+                <br>
+                <form class="form mb-2" action="/catalog/<%=product.id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger" type="submit">Видалити</button>
+                </form>
+                <a href="/catalog/<%=product.id%>/edit" class="btn btn-primary">Редагувати</a>
+            </div>
+        </div>
+    </div>
 </div>
