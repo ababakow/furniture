@@ -7,12 +7,16 @@ const catchAsync = require('../utils/catchAsync');
 const multer = require('multer');
 const upload = multer({ dest: './public/imgs/catalog' });
 
-router.get('/', catchAsync(catalog.index));
-router.get('/new', catalog.renderNewForm);
-router.post('/', upload.array('images'), catchAsync(catalog.createProduct));
-router.get('/:id', catchAsync(catalog.showProduct));
+router.route('/').get(catchAsync(catalog.index)).post(upload.array('images'), catchAsync(catalog.createProduct));
+
+router.route('/new').get(catalog.renderNewForm);
+
+router
+	.route('/:id')
+	.get(catchAsync(catalog.showProduct))
+	.put(upload.array('images'), catchAsync(catalog.updateProduct))
+	.delete(catchAsync(catalog.deleteProduct));
+
 router.get('/:id/edit', catchAsync(catalog.renderEditForm));
-router.put('/:id', upload.array('images'), catchAsync(catalog.updateProduct));
-router.delete('/:id', catchAsync(catalog.deleteProduct));
 
 module.exports = router;
