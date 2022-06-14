@@ -2,18 +2,24 @@
 <div class="row after-nav">
     <h1>Редагувати продукт</h1>
     <div class="col-8 offset-2">
-        <form action="/catalog/<%=product.id%>?_method=PUT" method="POST" enctype="multipart/form-data">
+        <form action="/catalog/<%=product.id%>?_method=PUT" method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="title" class="form-label">Назва</label>
-                <input type="text" class="form-control" id="title" name="title" value="<%=product.title%>">
+                <input type="text" class="form-control" id="title" name="title" value="<%=product.title%>" required>
+            <div class="invalid-feedback">
+                    Це поле має бути заповнене.
+                </div>
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Опис</label>
-                <textarea class="form-control" name="description" id="description" rows="3"><%=product.description%></textarea>
+                <textarea class="form-control" name="description" id="description" rows="3" required><%=product.description%></textarea>
+            <div class="invalid-feedback">
+                    Це поле має бути заповнене.
+                </div>
             </div>
             <div class="mb-3">
                 <label for="category" class="form-label">Категорія</label>
-                <select class="form-select" id="category" name="category">
+                <select class="form-select" id="category" name="category" required>
                     <% for(let category of Object.keys(categories)){ %> 
                         <% if (category === product.category){ %> 
                             <option value="<%=category%>" selected><%=categories[category]%></option>
@@ -44,3 +50,4 @@
         </form>
     </div>
 </div>
+<script src="/javascripts/validateForms.js"></script>

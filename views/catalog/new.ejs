@@ -2,18 +2,24 @@
 <div class="row after-nav">
     <h1>Дадати новий продукт</h1>
     <div class="col-8 offset-2">
-        <form action="/catalog" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+        <form action="/catalog" method="POST" novalidate class="validated-form needs-validation" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="title" class="form-label">Назва</label>
-                <input type="text" class="form-control" id="title" name="title">
+                <input type="text" class="form-control" id="title" name="title" required>
+                <div class="invalid-feedback">
+                    Це поле має бути заповнене.
+                </div>
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Опис</label>
-                <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+                <textarea class="form-control" name="description" id="description" rows="3" required></textarea>
+                <div class="invalid-feedback">
+                    Це поле має бути заповнене.
+                </div>
             </div>
             <div class="mb-3">
                 <label for="category" class="form-label">Категорія</label>
-                <select class="form-select" id="category" name="category">
+                <select class="form-select" id="category" name="category" required>
                     <% for(let category of Object.keys(categories)){ %> 
                         <option value="<%=category%>"><%=categories[category]%></option>
                     <% } %> 
@@ -28,7 +34,7 @@
             </div>
             
         </form>
-        <img src="/imgs/catalog/64d2555ab85429397288c6d8691599a7" alt=""> 
-        <img src="/imgs/main/1.jpg" alt=""> 
     </div>
 </div>
+<script src="/javascripts/validateForms.js"></script>
+
