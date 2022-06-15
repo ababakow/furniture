@@ -6,19 +6,25 @@ const imageSchema = new mongose.Schema({
 	url: String
 });
 
-const productSchema = new mongose.Schema({
-	title: {
-		type: String,
-		required: true
+const productSchema = new mongose.Schema(
+	{
+		title: {
+			type: String,
+			required: true
+		},
+		description: {
+			type: String,
+			required: true
+		},
+		category: {
+			type: String,
+			enum: Object.keys(categories),
+			required: true
+		},
+		images: [ imageSchema ]
 	},
-	description: String,
-	category: {
-		type: String,
-		enum: Object.keys(categories),
-		required: true
-	},
-	images: [ imageSchema ]
-});
+	{ timestamps: true }
+);
 
 productSchema.methods.categoryToUa = function categoryToUa() {
 	return categories[this.category];
