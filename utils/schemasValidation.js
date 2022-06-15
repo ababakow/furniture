@@ -24,10 +24,24 @@ const extension = (joi) => ({
 const Joi = baseJoi.extend(extension);
 
 module.exports.catalogSchema = Joi.object({
-	title: Joi.string().required().escapeHTML(),
-	description: Joi.string().required().escapeHTML(),
+	title: Joi.string().required().max(250).escapeHTML(),
+	description: Joi.string().required().max(10000).escapeHTML(),
 	category: Joi.string().required().escapeHTML(),
-	images: Joi.array().items(
+	images: Joi.array().max(10).items(
+		Joi.object({
+			name: Joi.string().required().escapeHTML(),
+			url: Joi.string().required().escapeHTML()
+		}).required()
+	),
+	deleteImages: Joi.array()
+});
+
+module.exports.shopSchema = Joi.object({
+	title: Joi.string().required().max(250).escapeHTML(),
+	description: Joi.string().required().max(10000).escapeHTML(),
+	price: Joi.number().required().min(0).max(1000000),
+	inStock: Joi.boolean().required(),
+	images: Joi.array().max(10).items(
 		Joi.object({
 			name: Joi.string().required().escapeHTML(),
 			url: Joi.string().required().escapeHTML()

@@ -2,8 +2,14 @@ const mongose = require('mongoose');
 const categories = require('../settings/categories.json');
 
 const imageSchema = new mongose.Schema({
-	name: String,
-	url: String
+	name: {
+		type: String,
+		required: true
+	},
+	url: {
+		type: String,
+		required: true
+	}
 });
 
 const productSchema = new mongose.Schema(

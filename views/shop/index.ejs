@@ -1,2 +1,36 @@
 <% layout('/layouts/boilerplate') %> 
-<h1>Магазин</h1>
+<div class="row after-nav">
+    <div class="col-9">
+        <h1>Магазин готової продукції</h1>
+    </div>
+    <div class="col-3 d-flex align-items-center justify-content-end">
+        <a href="/shop/new" class="btn btn-success">Додати продукт</a>
+    </div>
+</div>
+<div class="row">
+    <%-include('../partials/flash')%>
+    <% for(let item of shopItems) { %>
+        <div class="card" style="width: 18rem;">
+            <% if(item.images.length){ %> 
+                <img src="<%=item.images[0].url%>" class="card-img-top" alt="...">
+            <% } else { %> 
+                <img src="/imgs/navbar/logo.svg" style="background-color: blue;" class="card-img-top" alt="...">
+            <% } %> 
+            <div class="card-body">
+                <h5 class="card-title"><%=item.title%></h5>
+                <p class="card-text"><%=item.description%></p>
+                <% if (item.inStock){ %>  
+                    <p class="card-text">В наявності</p>
+                <% } else { %> 
+                    <p class="card-text">Товар тимчасово відсутній</p>
+                <% } %> 
+                <p class="card-text"><%=item.price%> грн.</p>
+                <% let [year, month, day] = [item.createdAt.getFullYear(), item.createdAt.getMonth(), item.createdAt.getDate()] %> 
+                <p class="card-text"><%=day%>-<%=month%>-<%=year%></p>
+                <br>
+                <a href="/shop/<%=item.id%>" class="btn btn-primary">Перейти</a>
+            </div>
+        </div>
+    <% } %> 
+    <div class="after-nav"></div>
+</div>

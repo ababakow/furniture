@@ -1,35 +1,26 @@
 const express = require('express');
 const router = express.Router();
+const shop = require('../controllers/shop');
 
-router.get('/', (req, res) => {
-	res.render('shop');
-});
-router.get('/new', (req, res) => {
-	res.render('shop/new');
-});
-router.post('/', (req, res) => {
-	res.redirect('/shop');
-});
-router.get('/:category', (req, res) => {
-	const { category } = req.params;
-	res.render(`shop/${category}`);
-});
-router.get('/:category/:id', (req, res) => {
-	const { category, id } = req.params;
-	res.render('shop/show', { category, id });
-});
+const catchAsync = require('../utils/catchAsync');
+const { validateShopItem } = require('../middleware');
 
-router.get('/:category/:id/edit', (req, res) => {
-	res.render('shop/edit');
-});
+const multer = require('multer');
+const upload = multer({ dest: './public/imgs/shop' });
 
-router.put('/:category/:id', (req, res) => {
-	const { category, id } = req.params;
-	res.redirect(`/shop/${category}/${id}`);
-});
+router
+	.route('/')
+	.get(catchAsync(shop.index))
+	.post(upload.array('images'), validateShopItem, catchAsync(shop.createShopItem));
 
-router.delete('/:category/:id', (req, res) => {
-	res.redirect('/shop');
-});
+router.route('/new').get(shop.renderNewForm);
+
+router
+	.route('/:id')
+	.get(catchAsync(shop.showShopItem))
+	.put(upload.array('images'), validateShopItem, catchAsync(shop.updateShopItem))
+	.delete(catchAsync(shop.deleteShopItem));
+
+router.get('/:id/edit', catchAsync(shop.renderEditForm));
 
 module.exports = router;

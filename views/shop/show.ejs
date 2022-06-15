@@ -1,2 +1,31 @@
 <% layout('/layouts/boilerplate') %> 
-<h1>Магазин - картка продукту</h1>
+<div class="row after-nav mb-5">
+    <%-include('../partials/flash')%>
+    <div class="col-6 offset-3">
+        <h5><%=item.title%></h5>
+        <div class="card" >
+            <div class="d-flex">
+                <% for (let img of item.images){ %> 
+                    <img src="<%=img.url%>" class="card-img-top" style="width:18rem">
+                <% } %> 
+            </div>
+            <div class="card-body">
+                <p class="card-text"><%=item.description%></p>
+                <% if (item.inStock){ %>  
+                    <p class="card-text">В наявності</p>
+                <% } else { %> 
+                    <p class="card-text">Товар тимчасово відсутній</p>
+                <% } %> 
+                <p class="card-text"><%=item.price%> грн.</p>
+                <% let [year, month, day] = [item.createdAt.getFullYear(), item.createdAt.getMonth(), item.createdAt.getDate()] %> 
+                <p class="card-text"><%=day%>-<%=month%>-<%=year%></p>
+                <br>
+                <br>
+                <form class="form mb-2" action="/shop/<%=item.id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger" type="submit">Видалити</button>
+                </form>
+                <a href="/shop/<%=item.id%>/edit" class="btn btn-primary">Редагувати</a>
+            </div>
+        </div>
+    </div>
+</div>

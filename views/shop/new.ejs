@@ -1,2 +1,45 @@
 <% layout('/layouts/boilerplate') %> 
-<h1>Магазин - форма стоврення</h1>
+<div class="row after-nav">
+    <h1>Дадати новий продукт до магазину</h1>
+    <div class="col-8 offset-2">
+        <form action="/shop" method="POST" novalidate class="validated-form needs-validation" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="title" class="form-label">Назва</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+                <div class="invalid-feedback">
+                    Це поле має бути заповнене.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Опис</label>
+                <textarea class="form-control" name="description" id="description" rows="3" required></textarea>
+                <div class="invalid-feedback">
+                    Це поле має бути заповнене.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="in-stock" class="form-label">Наявність</label>
+                <select class="form-select" id="in-stock" name="inStock" required>
+                        <option value="true" selected>В наявності</option>
+                        <option value="false">Товар тимчасово відсутнійсті</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Ціна</label>
+                <input type="text" class="form-control" id="price" name="price" placeholder="0.00" required>
+                <div class="invalid-feedback">
+                    Це поле має бути заповнене.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="images" class="form-label">Фото</label>
+                <input type="file" class="form-control" id="images" name="images" multiple>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Зберегти</button>
+            </div>
+            
+        </form>
+    </div>
+</div>
+<script src="/javascripts/validateForms.js"></script>
