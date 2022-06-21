@@ -1,0 +1,30 @@
+<% layout('/layouts/boilerplate') %> 
+
+<div class="row after-nav">
+    <h1>Авторизація</h1>
+    <%-include('../partials/flash')%>
+    <div class="col-6 offset-3">
+        <form action="/login" method="POST" class="needs-validation" novalidate>
+            <div class="mb-3">
+                <label for="username" class="form-label">Нікнейм або email</label>
+                <input type="text" class="form-control" id="username" name="username" autofocus required>
+                <div class="invalid-feedback">
+                    Це поле має бути заповнене.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Пароль</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+                <div class="invalid-feedback">
+                    Це поле має бути заповнене.
+                </div>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Увійти</button>
+            </div>
+        </form>
+        <h4>Не маєш аккаунта?</h4>
+        <a href="/registration" class="btn btn-success">Зареєструватися</a>
+    </div>
+</div>
+<script src="/javascripts/validateForms.js"></script>

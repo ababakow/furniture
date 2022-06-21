@@ -14,7 +14,7 @@
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             ПОРТФОЛІО
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <div class="dropdown-menu dropdown-menu-catalog" aria-labelledby="navbarDropdown">
             <div class="d-flex nav-dropdown">
  
                 <a href="/catalog?category=kitchens">
@@ -96,11 +96,7 @@
         <li class="nav-item">
           <a class="nav-link" href="/contacts">КОНТАКТИ</a>
         </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link text-danger" href="/catalog/new">ДОДАТИ</a>
-        </li>         -->
       </ul>
-      <!-- ======================================================================= -->
       <!-- ======================================================================= -->
       <div class="navbar-nav">
         <span class="navbar-text d-none d-lg-inline">
@@ -108,12 +104,35 @@
           <a href="tel:+380981234567">+38 (098) 123 4567</a>
         </span>
       </div>
-      <div class="navbar-nav text-white">
-        <a class="px-lg-4 py-2 text-white" href="/user">
-          <img class="p-0 d-none d-lg-inline" src="/imgs/navbar/user.svg" alt="Мій кабінет" width="30" height="30">
-          <span class="d-lg-none">МІЙ КАБІНЕТ</span>
-        </a>
-        <a class="align-self-lg-center text-white px-lg-4 py-2" href="/login">УВІЙТИ</a>
+      <!-- ======================================================================= -->
+      <% if (currentUser) { %> 
+        <div class="navbar-nav text-white">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle p-0 px-lg-4" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="p-1"><%= currentUser.username %></span>
+              <img class="p-0 d-none d-lg-inline" src="/imgs/navbar/user.svg" alt="Мій кабінет" width="30" height="30">
+              <span class="d-lg-none">МІЙ КАБІНЕТ</span>
+              
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="/profile">Мій профіль</a></li>
+              <li><a class="dropdown-item" href="/orders">Мої замовлення</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <form action="/logout" method="POST">
+                  <button class="btn">Вийти</button>
+                </form>
+              </li>
+            </ul>
+          </li>
+          <!-- <a class="px-lg-4 py-2 text-white" href="/user">
+            <img class="p-0 d-none d-lg-inline" src="/imgs/navbar/user.svg" alt="Мій кабінет" width="30" height="30">
+            <span class="d-lg-none">МІЙ КАБІНЕТ</span>
+          </a> -->
+        <% } else { %> 
+        <!-- ======================================================================= -->
+          <a class="align-self-lg-center text-white px-lg-4 py-2" href="/login">УВІЙТИ</a>
+        <% } %> 
       </div>
     </div>
   </div>

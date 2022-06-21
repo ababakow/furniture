@@ -49,3 +49,19 @@ module.exports.shopSchema = Joi.object({
 	),
 	deleteImages: Joi.array()
 });
+
+module.exports.userSchema = Joi.object({
+	username: Joi.string().alphanum().required().min(3).max(250).escapeHTML(),
+	password: Joi.string().required().min(6).max(250).escapeHTML(),
+	email: Joi.string().email().required().max(250).escapeHTML(),
+	f_name: Joi.string().empty('').max(50).escapeHTML(),
+	l_name: Joi.string().empty('').max(50).escapeHTML(),
+	// phone: Joi.number().integer().positive().min(100000000).max(999999999),
+	phone: Joi.string().empty('').min(9).max(20).escapeHTML(),
+	adress: Joi.object({
+		city: Joi.string().empty('').max(50).escapeHTML(),
+		street: Joi.string().empty('').max(50).escapeHTML(),
+		house: Joi.string().empty('').max(10).escapeHTML(),
+		apt: Joi.string().empty('').max(10).escapeHTML()
+	})
+});
