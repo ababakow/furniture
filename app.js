@@ -74,7 +74,7 @@ app.use((req, res, next) => {
 //==============================================
 app.use('/catalog', catalogRoutes);
 app.use('/shop', shopRoutes);
-// app.use('/orders', orderRoutes);
+app.use('/orders', orderRoutes);
 app.use('/', mainRoutes);
 app.use('/', userRoutes);
 //==============================================

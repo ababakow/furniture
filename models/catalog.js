@@ -1,18 +1,8 @@
-const mongose = require('mongoose');
+const mongoose = require('mongoose');
 const categories = require('../settings/categories.json');
+const imageSchema = require('./image');
 
-const imageSchema = new mongose.Schema({
-	name: {
-		type: String,
-		required: true
-	},
-	url: {
-		type: String,
-		required: true
-	}
-});
-
-const productSchema = new mongose.Schema(
+const productSchema = new mongoose.Schema(
 	{
 		title: {
 			type: String,
@@ -36,6 +26,6 @@ productSchema.methods.categoryToUa = function categoryToUa() {
 	return categories[this.category];
 };
 
-const Product = mongose.model('Product', productSchema);
+const Product = mongoose.model('Product', productSchema);
 
 module.exports = Product;

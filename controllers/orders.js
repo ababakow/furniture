@@ -1,11 +1,14 @@
-// const ShopItem = require('../models/shop');
-
+const Order = require('../models/order');
 // const { unlink } = require('fs/promises');
 
-// module.exports.index = async (req, res) => {
-// 	const shopItems = await ShopItem.find({});
-// 	res.render('shop', { shopItems });
-// };
+module.exports.index = async (req, res) => {
+	const orders = await Order.find();
+	if (!orders) {
+		req.flash('error', `Нажаль, не вдалося завантажити замовлення`);
+		return res.redirect('/orders');
+	}
+	res.render('orders', { orders });
+};
 
 // module.exports.renderNewForm = (req, res) => {
 // 	res.render('shop/new');

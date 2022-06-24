@@ -1,14 +1,15 @@
-const mongose = require('mongoose');
+const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
 
-const userSchema = new mongose.Schema(
+const userSchema = new mongoose.Schema(
 	{
 		f_name: String,
 		l_name: String,
 		email: {
 			type: String,
 			required: true,
-			unique: true
+			unique: true,
+			immutable: true
 		},
 		phone: String,
 		adress: {
@@ -20,7 +21,8 @@ const userSchema = new mongose.Schema(
 		admin: {
 			type: Boolean,
 			default: false,
-			required: true
+			required: true,
+			immutable: true
 		}
 	},
 	{ timestamps: true }
@@ -31,6 +33,7 @@ const passportOptions = {
 	limitAttempts: true,
 	maxAttempts: 10,
 	unlockInterval: 60 * 60 * 10,
+	selectFields: 'username attempts last',
 	errorMessages: {
 		MissingPasswordError: 'Відсутній пароль.',
 		AttemptTooSoonError: 'Акаунт заблокований, спробуйте пізніше.',
@@ -46,6 +49,6 @@ const passportOptions = {
 
 userSchema.plugin(passportLocalMongoose, passportOptions);
 
-const Users = mongose.model('Users', userSchema);
+const User = mongoose.model('User', userSchema);
 
-module.exports = Users;
+module.exports = User;

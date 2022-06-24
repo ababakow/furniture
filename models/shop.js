@@ -1,17 +1,7 @@
-const mongose = require('mongoose');
+const mongoose = require('mongoose');
+const imageSchema = require('./image');
 
-const imageSchema = new mongose.Schema({
-	name: {
-		type: String,
-		required: true
-	},
-	url: {
-		type: String,
-		required: true
-	}
-});
-
-const shopItemSchema = new mongose.Schema(
+const shopItemSchema = new mongoose.Schema(
 	{
 		title: {
 			type: String,
@@ -34,6 +24,6 @@ const shopItemSchema = new mongose.Schema(
 	{ timestamps: true }
 );
 
-const ShopItem = mongose.model('ShopItem', shopItemSchema);
+const ShopItem = mongoose.model('ShopItem', shopItemSchema);
 
 module.exports = ShopItem;

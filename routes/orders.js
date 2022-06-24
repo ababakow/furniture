@@ -8,9 +8,7 @@ const catchAsync = require('../utils/catchAsync');
 // const multer = require('multer');
 // const upload = multer({ dest: './public/imgs/shop' });
 
-// router
-// 	.route('/')
-// 	.get(catchAsync(shop.index))
+router.route('/').get(catchAsync(orders.index));
 // 	.post(upload.array('images'), validateShopItem, catchAsync(shop.createShopItem));
 
 // router.route('/new').get(shop.renderNewForm);
@@ -23,4 +21,4 @@ const catchAsync = require('../utils/catchAsync');
 
 // router.get('/:id/edit', catchAsync(shop.renderEditForm));
 
-// module.exports = router;
+module.exports = router;

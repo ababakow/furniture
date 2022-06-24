@@ -6,7 +6,7 @@
         <form action="/profile?_method=PUT" method="POST" class="needs-validation register-validation" novalidate>
             <div class="mb-3">
                 <label for="username" class="form-label">Нікнейм</label>
-                <input type="text" class="form-control" id="username" name="username" value="<%= user.username %>" disabled required>
+                <input type="text" class="form-control" id="username" name="username" value="<%= user.username %>" autocomplete="username" disabled required>
             </div>
             <button class="btn btn-primary mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#change-pass" aria-expanded="false" aria-controls="change-pass">
                 Змінити пароль
@@ -14,40 +14,40 @@
             <div class="collapse row mb-3" id="change-pass">
                 <div class="col-md-6">
                     <label for="password" class="form-label">Новий пароль</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
+                    <input type="password" class="form-control" id="password" name="password" autocomplete="new-password" required>
                     <div class="invalid-feedback"></div>
                 </div>
                 <div class="col-md-6">
                     <label for="password2" class="form-label">Повторіть новий пароль</label>
-                    <input type="password" class="form-control" id="password2" required>
+                    <input type="password" class="form-control" id="password2" autocomplete="new-password" required>
                     <div class="invalid-feedback"></div>
                 </div>
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" value="<%= user.email %>" disabled required>
+                <input type="email" class="form-control" id="email" name="email" value="<%= user.email %>" autocomplete="email" disabled required>
             </div>
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="f_name" class="form-label">Ім'я</label>
-                    <input type="text" class="form-control" id="f_name" name="f_name" value="<%= user.f_name %>">
+                    <input type="text" class="form-control" id="f_name" name="f_name" value="<%= user.f_name %>" autocomplete="given-name" >
                     <div class="invalid-feedback"></div>
                 </div>
                 <div class="col-md-6">
                     <label for="l_name" class="form-label">Прізвище</label>
-                    <input type="text" class="form-control" id="l_name" name="l_name" value="<%= user.l_name %>">
+                    <input type="text" class="form-control" id="l_name" name="l_name" value="<%= user.l_name %>" autocomplete="family-name" >
                     <div class="invalid-feedback"></div>
                 </div>
             </div>
             <div class="mb-3">
                 <label for="phone" class="form-label">Номер телефону</label>
-                <input type="tel" class="form-control" id="phone" name="phone" placeholder="+38(000)000-00-00" maxlength="17" value="<%= user.phone %>">
+                <input type="tel" class="form-control" id="phone" name="phone" placeholder="+38(000)000-00-00" maxlength="17" value="<%= user.phone %>" autocomplete="tel">
                 <div class="invalid-feedback"></div>
             </div>
             <div class="row mb-3">
                 <div class="col-md-4">
                     <label for="city" class="form-label">Місто</label>
-                    <input type="text" class="form-control" id="city" name="adress[city]" value="<%= user.adress.city %>">
+                    <input type="text" class="form-control" id="city" name="adress[city]" value="<%= user.adress.city %>" >
                     <div class="invalid-feedback"></div>
                 </div>
                 <div class="col-md-4">
