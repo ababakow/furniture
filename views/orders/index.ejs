@@ -1,1 +1,92 @@
-<p mb-5><%= orders %> </p>
+<% layout('/layouts/boilerplate') %> 
+<div class="after-nav"></div>
+<%-include('../partials/flash')%>
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 d-flex justify-content-between mb-2">
+        <h2>Всі замовлення</h2>
+        <div class="nav-item">
+            <a class="btn btn-success mx-1" href="/orders/new">Створити</a>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-4">
+        <ul class="nav justify-content-md-end justify-content-lg-center mb-2">
+            <li class="nav-item">
+                <a class="btn btn-outline-primary mx-1" href="/orders?filter=all">Всі</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-outline-primary mx-1" href="/orders?filter=active">Активні</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-outline-primary mx-1" href="/orders?filter=closed">Завершені</a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-12 col-lg-4">
+        <form class="d-flex mb-2" role="search" action="/orders">
+            <input class="form-control me-2" type="search" placeholder="№ або назва замовлення" aria-label="Search" name="search">
+            <button class="btn btn-outline-success" type="submit">Знайти</button>
+        </form>
+    </div>
+</div>
+
+
+<div class="row">
+<div class="col-xl-8 offset-xl-2">
+
+<% if (orders.length === 0){ %> 
+    <h4>Замовлення не знайдено або виникла проблема при їх завантаженні.</h4>
+<% } else { %> 
+
+<% orders.reverse().forEach(order => { %>
+
+    <div class="modal fade" id="userInfo-<%=order.order_id%>" tabindex="-1" aria-labelledby="userInfoLabel-<%=order.order_id%>" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="userInfoLabel-<%=order.order_id%>"><%=order.client.username%></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>email: <%=order.client.email%></p>
+                    <p>Телефон: <%=order.client.phone%></p>
+                    <p>Адреса: <%=order.client.adress.city%>, <%=order.client.adress.street%> <%=order.client.adress.house%>, <%=order.client.adress.apt%></p>
+                    <p>Дата народження: <%=order.client.birthday.day%>-<%=order.client.birthday.month%>-<%=order.client.birthday.year%></p>
+                    <p>Стать: <%=order.client.sex%></p>
+                    <p>Дата реєстрації: <%=order.client.createdAt.getDate()%>-<%=order.client.createdAt.getMonth()%>-<%=order.client.createdAt.getFullYear()%></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-1">
+        <div class="card-header text-center">
+            <strong>№<%=order.order_id%></strong>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-9">
+                    <h5 class="card-title"><%=order.name%> - <a href="" class="link-secondary" data-bs-toggle="modal" data-bs-target="#userInfo-<%=order.order_id%>"><%=order.client.username%></a></h5>
+                    <p class="card-text"><%=order.description%></p>
+                    <% if (order.status.length !=0){ %>
+                        <p class="card-text">Статус: <%=order.status[order.status.length-1].name%></p>
+                    <% } %> 
+                    <div class="text-muted mb-2">
+                        <small class="me-5 d-block d-sm-inline"><em>Створено: <%=order.startDate.getDate()%>-<%=order.startDate.getMonth()%>-<%=order.startDate.getFullYear()%></em></small>
+                        <% if (order.finishDate){ %> 
+                            <small class="d-block d-sm-inline"><em>Завершено: <%=order.finishDate.getDate()%>-<%=order.finishDate.getMonth()%>-<%=order.finishDate.getFullYear()%></em></small>
+                        <% } else { %> 
+                            <% if (order.status.length !=0){ %> 
+                            <small class="d-block d-sm-inline"><em>Оновлено: <%=order.status[order.status.length-1].date.getDate()%>-<%=order.status[order.status.length-1].date.getMonth()%>-<%=order.status[order.status.length-1].date.getFullYear()%></em></small>
+                            <% } %> 
+                        <% } %> 
+                    </div>
+                </div>
+                <div class="col-md-3 d-flex justify-content-center align-items-center">
+                    <a href="/orders/<%=order._id%>" class="btn btn-primary">Відкрити</a>
+                </div>
+            </div>
+        </div>
+    </div>
+<% }) %> 
+
+<% } %> 

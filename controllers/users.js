@@ -26,8 +26,8 @@ module.exports.renderRegistration = (req, res) => {
 
 module.exports.registration = async (req, res, next) => {
 	try {
-		const { username, password, email, f_name, l_name, phone, adress } = req.body;
-		const user = new User({ username, email, f_name, l_name, phone, adress });
+		const { username, password, email, f_name, l_name, birthday, sex, phone, adress } = req.body;
+		const user = new User({ username, email, f_name, l_name, birthday, sex, phone, adress });
 		const registeredUser = await User.register(user, password);
 		req.login(registeredUser, (err) => {
 			if (err) return next(err);
@@ -47,6 +47,7 @@ module.exports.renderProfile = async (req, res) => {
 };
 
 module.exports.updateProfile = async (req, res) => {
+	console.log(req.body);
 	const user = await User.findByIdAndUpdate(req.user._id, req.body, { new: true });
 	if (req.body.password) {
 		await user.setPassword(req.body.password);
@@ -57,7 +58,7 @@ module.exports.updateProfile = async (req, res) => {
 };
 
 module.exports.renderOrders = async (req, res) => {
-	const orders = await Order.find({ client: req.user._id });
+	const orders = await Order.find({ client: req.user._id }).populate('status');
 	// if (orders.length === 0) {
 	// 	return res.render('user/orders', { orders: 'У вас ще немає замовлень.' });
 	// }
@@ -66,7 +67,8 @@ module.exports.renderOrders = async (req, res) => {
 
 module.exports.getStatusImages = async (req, res) => {
 	const { order_id, status_id } = req.query;
-	const order = await Order.findOne({ order_id });
+	const order = await Order.findOne({ order_id }).populate('status');
+	console.log(order);
 	const { name, images } = order.status.filter((item) => item._id == status_id)[0];
 	const data = {
 		name,

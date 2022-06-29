@@ -18,6 +18,16 @@ const userSchema = new mongoose.Schema(
 			house: String,
 			apt: String
 		},
+		birthday: {
+			_id: false,
+			day: Number,
+			month: Number,
+			year: Number
+		},
+		sex: {
+			type: String,
+			enum: [ 'M', 'F', 'n/d' ]
+		},
 		admin: {
 			type: Boolean,
 			default: false,

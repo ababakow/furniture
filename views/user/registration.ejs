@@ -40,6 +40,27 @@
                     <div class="invalid-feedback"></div>
                 </div>
             </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="birthday" class="form-label">Дата народження</label>
+                    <div class="input-group id="birthday">
+                        <input type="number" id="day" aria-label="Day" class="form-control" placeholder="День" name="birthday[day]">
+                        <input type="number" id="month" aria-label="Month" class="form-control" placeholder="Місяць" name="birthday[month]">
+                        <input type="number" id="year" aria-label="Year" class="form-control" placeholder="Рік" name="birthday[year]">
+                    </div>
+                    <!-- <input type="date" class="form-control" id="birthday" name="birthday"> -->
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="col-md-6">                    
+                    <label for="sex" class="form-label">Стать</label>
+                    <select class="form-select" id="sex" name="sex">
+                        <option value="n/d">Не вказано</option>
+                        <option value="M">Чоловіча</option>
+                        <option value="F">Жіноча</option>
+                    </select>
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>
             <div class="mb-3">
                 <label for="phone" class="form-label">Номер телефону</label>
                 <input type="tel" class="form-control" id="phone" name="phone" placeholder="+38(000)000-00-00" maxlength="17">

@@ -1,0 +1,91 @@
+<% layout('/layouts/boilerplate') %> 
+<div class="after-nav"></div>
+<%-include('../partials/flash')%>
+
+<div class="row">
+    <div class="col-xl-8 offset-xl-2">
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-9">
+                        <h5 class="card-title">№<%=order.order_id%> <%=order.name%></h5>
+                        <h6 class="card-title">Клієнт: <%=order.client.username%></h6>
+                        <p class="card-text"><%=order.description%></p>
+                        <div class="text-muted mb-2">
+                            <small class="me-5 d-block d-sm-inline"><em>Створено: <%=order.startDate.getDate()%>-<%=order.startDate.getMonth()%>-<%=order.startDate.getFullYear()%></em></small>
+                            <% if (order.finishDate){ %> 
+                                <small class="d-block d-sm-inline"><em>Завершено: <%=order.finishDate.getDate()%>-<%=order.finishDate.getMonth()%>-<%=order.finishDate.getFullYear()%></em></small>
+                            <% } else { %>
+                                <small class="d-block d-sm-inline"><em>Замовлення активне</em></small>
+                            <% } %> 
+                        </div>
+                    </div>
+                    <div class="col-md-3 d-flex flex-md-column justify-content-center align-items-center">
+                        <a href="/orders/<%=order._id%>/edit" class="btn btn-primary card-link m-0 mx-2">Редагувати</a>
+                    </div>
+                </div>                
+            </div>
+            <ul class="list-group list-group-flush">
+                <% if (order.status.length ==0){ %>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <p class="card-text">Статусів ще немає</p>
+                        <a href="/orders/<%=order._id%>/status/new" class="btn btn-primary card-link">Додати статус</a>
+                    </li>
+                <% } else { %> 
+                    <li class="list-group-item d-flex justify-content-center">
+                        <a href="/orders/<%=order._id%>/status/new" class="btn btn-primary card-link">Додати статус</a>
+                    </li>
+                    <% order.status.forEach((item,i) => { %>
+                        <li class="list-group-item">   
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <% if (item.images.length != 0){ %>
+                                        <div id="carousel-<%=i%>" class="carousel slide" data-bs-ride="carousel-<%=i%>">
+                                            <div class="carousel-inner">
+                                                <% item.images.forEach(function(image, index){ %>
+                                                    <% if (index ===0){ %> 
+                                                        <div class="carousel-item active">
+                                                            <img src="<%=image.url%>" class="d-block w-100" alt="...">
+                                                        </div>
+                                                    <% } else { %> 
+                                                        <div class="carousel-item">
+                                                            <img src="<%=image.url%>" class="d-block w-100" alt="...">
+                                                        </div>
+                                                    <% } %> 
+                                                <% }) %>
+                                            </div>
+                                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-<%=i%>" data-bs-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Попередня</span>
+                                            </button>
+                                            <button class="carousel-control-next" type="button" data-bs-target="#carousel-<%=i%>" data-bs-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Наступна</span>
+                                            </button>
+                                        </div>
+                                    <% } %>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5 class="card-title"><%=item.name%></h5>
+                                    <p class="card-text"><%=item.desc%></p>
+                                    <p class="card-text"><small class="text-muted"><%=item.date.getDate()%>-<%=item.date.getMonth()%>-<%=item.date.getFullYear()%></small></p>
+                                </div>
+                                <div class="col-md-3 d-flex justify-content-center align-items-center flex-column">
+                                    <a href="/orders/<%=order._id%>/status/<%=item._id%>/edit" class="btn btn-primary card-link mb-2">Редагувати</a>
+                                    <form action="/orders/<%=order._id%>/status/<%=item._id%>?_method=DELETE" method="POST" class="d-flex">
+                                        <button type="submit" class="btn btn-danger">Видалити</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </li>    
+                    <% }) %>                    
+                <% } %> 
+            </ul>
+        </div>
+
+        <form action="/orders/<%=order._id%>?_method=DELETE" method="POST" class="d-flex">
+            <button type="submit" class="btn btn-danger mx-auto mb-3">Видалити замовлення</button>
+        </form>
+    </div>
+</div>

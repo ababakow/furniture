@@ -1,69 +1,87 @@
 const Order = require('../models/order');
-// const { unlink } = require('fs/promises');
+const User = require('../models/user');
+
+const { unlink } = require('fs/promises');
 
 module.exports.index = async (req, res) => {
-	const orders = await Order.find();
-	if (!orders) {
-		req.flash('error', `Нажаль, не вдалося завантажити замовлення`);
+	if (JSON.stringify(req.query) == '{}' || req.query.filter == 'all') {
+		const orders = await Order.find().populate('client').populate('status');
+		return res.render('orders', { orders });
+	}
+	if ('filter' in req.query) {
+		if (req.query.filter === 'active') {
+			const orders = await Order.find({ finishDate: { $exists: false } }).populate('client').populate('status');
+			return res.render('orders', { orders });
+		}
+		if (req.query.filter === 'closed') {
+			const orders = await Order.find({ finishDate: { $exists: true } }).populate('client').populate('status');
+			return res.render('orders', { orders });
+		}
+		req.flash('error', `Помилка фільтрування данних`);
 		return res.redirect('/orders');
 	}
-	res.render('orders', { orders });
+	if ('search' in req.query) {
+		let orders = await Order.find({ name: { $regex: '.*' + req.query.search + '.*' } })
+			.populate('client')
+			.populate('status');
+		if (orders.length != 0) return res.render('orders', { orders });
+		if (+req.query.search) {
+			orders = await Order.find({ order_id: req.query.search }).populate('client').populate('status');
+			if (orders.length != 0) return res.render('orders', { orders });
+		}
+	}
+	res.render('orders', { orders: '' });
 };
 
-// module.exports.renderNewForm = (req, res) => {
-// 	res.render('shop/new');
-// };
+module.exports.showOrder = async (req, res) => {
+	const { id } = req.params;
+	const order = await Order.findById(id).populate('client').populate('status');
+	if (!order) {
+		req.flash('error', `Нажаль, замовлення не знайдено`);
+		return res.redirect('/orders');
+	}
+	res.render('orders/show', { order });
+};
 
-// module.exports.createShopItem = async (req, res) => {
-// 	const newItem = new ShopItem(req.body);
-// 	newItem.images = req.files.map((f) => ({ url: `/imgs/shop/${f.filename}`, name: f.filename }));
-// 	await newItem.save();
-// 	req.flash('success', `Продукт успішно додано!`);
-// 	res.redirect('/shop');
-// };
+module.exports.renderNewOrder = async (req, res) => {
+	const users = await User.find(null, { _id: 1, username: 1 });
+	res.render('orders/new', { users, today: new Date() });
+};
 
-// module.exports.showShopItem = async (req, res) => {
-// 	const { id } = req.params;
-// 	const item = await ShopItem.findById(id);
-// 	if (!item) {
-// 		req.flash('error', `Нажаль, продукт не знайдено`);
-// 		return res.redirect('/shop');
-// 	}
-// 	res.render('shop/show', { item });
-// };
+module.exports.createOrder = async (req, res) => {
+	const order = new Order(req.body);
+	await order.save();
+	req.flash('success', `Замовлення успішно додано!`);
+	res.redirect(`/orders/${order._id}`);
+};
 
-// module.exports.renderEditForm = async (req, res) => {
-// 	const { id } = req.params;
-// 	const item = await ShopItem.findById(id);
-// 	if (!item) {
-// 		req.flash('error', `Нажаль, продукт не знайдено`);
-// 		return res.redirect('/shop');
-// 	}
-// 	res.render('shop/edit', { item });
-// };
+module.exports.renderEditOrder = async (req, res) => {
+	const { id } = req.params;
+	const order = await Order.findById(id);
+	if (!order) {
+		req.flash('error', `Нажаль, замовлення не знайдено`);
+		return res.redirect('/orders');
+	}
+	const users = await User.find(null, { _id: 1, username: 1 });
+	res.render('orders/edit', { order, users, selected: order.client });
+};
 
-// module.exports.updateShopItem = async (req, res) => {
-// 	const { id } = req.params;
-// 	const item = await ShopItem.findByIdAndUpdate(id, req.body, { new: true });
-// 	const imgs = req.files.map((f) => ({ url: `/imgs/shop/${f.filename}`, name: f.filename }));
-// 	item.images.push(...imgs);
-// 	await item.save();
-// 	if (req.body.deleteImages) {
-// 		for (let img of req.body.deleteImages) {
-// 			await unlink(`./public/imgs/shop/${img}`);
-// 		}
-// 		await item.updateOne({ $pull: { images: { name: { $in: req.body.deleteImages } } } });
-// 	}
-// 	req.flash('success', `Продукт успішно оновлено!`);
-// 	res.redirect(`/shop/${id}`);
-// };
+module.exports.updateOrder = async (req, res) => {
+	const { id } = req.params;
+	const order = await Order.findByIdAndUpdate(id, req.body);
+	await order.save();
+	req.flash('success', `Замовлення успішно оновлено!`);
+	res.redirect(`/orders/${id}`);
+};
 
-// module.exports.deleteShopItem = async (req, res) => {
-// 	const { id } = req.params;
-// 	const deletedItem = await ShopItem.findByIdAndDelete(id);
-// 	for (let img of deletedItem.images) {
-// 		await unlink(`./public${img.url}`);
-// 	}
-// 	req.flash('success', `Продукт успішно видалено!`);
-// 	res.redirect('/shop');
-// };
+module.exports.deleteOrder = async (req, res) => {
+	const { id } = req.params;
+	const deletedOrder = await Order.findByIdAndDelete(id).populate('status');
+	for (let status of deletedOrder.status) {
+		for (let img of status.images) {
+			await unlink(`./public${img.url}`);
+		}
+	}
+	req.flash('success', `Замовлення успішно видалено!`);
+	res.redirect('/orders');
+};

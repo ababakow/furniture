@@ -3,7 +3,7 @@ const router = express.Router();
 const passport = require('passport');
 const users = require('../controllers/users');
 const catchAsync = require('../utils/catchAsync');
-const { validateUser, isLoggedIn } = require('../middleware');
+const { validateRegisterUser, validateUpdateUser, isLoggedIn } = require('../middleware');
 
 router.get('/login', users.renderLogin);
 router.post(
@@ -18,10 +18,10 @@ router.post(
 router.post('/logout', users.logout);
 
 router.get('/registration', users.renderRegistration);
-router.post('/registration', validateUser, catchAsync(users.registration));
+router.post('/registration', validateRegisterUser, catchAsync(users.registration));
 
 router.get('/profile', isLoggedIn, catchAsync(users.renderProfile));
-router.put('/profile', isLoggedIn, catchAsync(users.updateProfile));
+router.put('/profile', isLoggedIn, validateUpdateUser, catchAsync(users.updateProfile));
 
 router.get('/my-orders', isLoggedIn, catchAsync(users.renderOrders));
 

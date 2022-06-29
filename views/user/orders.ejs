@@ -3,7 +3,7 @@
 
 
 <div class="row">
-<div class="col-lg-8 offset-lg-2">
+<div class="col-xl-10 offset-xl-1">
 
 <% if (orders.length === 0){ %> 
     <h4>У вас ще немає замовлень.</h4>
@@ -37,7 +37,8 @@
 </div>
 
 <div class="accordion">
-    <% for (let order of orders){ %> 
+    
+    <% orders.reverse().forEach(function(order) { %> 
     <div class="accordion-item">
         <div class="accordion-header" id="header-<%=order.order_id%>">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panel-<%=order.order_id%>" aria-expanded="false" aria-controls="panel-<%=order.order_id%>">
@@ -53,8 +54,8 @@
                             <p class="mb-2"><strong>Статус: Замовлення виконано.</strong></p>
                             <p class="m-0 text-muted">Дата завершення: <%=order.finishDate.getDate()%>-<%=order.finishDate.getMonth()%>-<%=order.finishDate.getFullYear()%></p>
                         <% } else { %> 
-                            <p class="mb-2"><strong>Статус: <%=order.status[order.status.length-1].statusName%> </strong></p>
-                            <p class="m-0 text-muted">Оновлено: <%=order.status[order.status.length-1].date.getDate()%>-<%=order.status[order.status.length-1].date.getMonth()%>-<%=order.status[order.status.length-1].date.getFullYear()%></p>
+                            <p class="mb-2"><strong>Статус: <%=order.status[0].name%></strong></p>
+                            <p class="m-0 text-muted">Оновлено: <%=order.status[0].date.getDate()%>-<%=order.status[0].date.getMonth()%>-<%=order.status[0].date.getFullYear()%></p>
                         <% } %> 
                         </div>              
                     <% } %> 
@@ -66,7 +67,7 @@
             <div class="accordion-body">
 
                 <% if(order.status.length !=0){ %> 
-                <% order.status.reverse().forEach(function(item,i) { %> 
+                <% order.status.forEach(function(item,i) { %> 
                     <div class="card mb-3" >
                         <div class="row g-0">                    
                             <div class="col-md-8">
@@ -136,7 +137,7 @@
             </div>
         </div>
     </div>
-    <% } %> 
+    <% }) %> 
 </div>
 
 <% } %> 

@@ -18,6 +18,7 @@ const shopRoutes = require('./routes/shop');
 const mainRoutes = require('./routes/main');
 const userRoutes = require('./routes/users');
 const orderRoutes = require('./routes/orders');
+const statusRoutes = require('./routes/status');
 
 const User = require('./models/user');
 
@@ -75,6 +76,7 @@ app.use((req, res, next) => {
 app.use('/catalog', catalogRoutes);
 app.use('/shop', shopRoutes);
 app.use('/orders', orderRoutes);
+app.use('/orders/:id/status', statusRoutes);
 app.use('/', mainRoutes);
 app.use('/', userRoutes);
 //==============================================

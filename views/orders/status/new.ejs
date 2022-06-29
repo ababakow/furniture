@@ -1,0 +1,41 @@
+<% layout('/layouts/boilerplate') %> 
+<div class="row after-nav">
+    <h1 class="text-center mb-3">Новий статус для замовлення №<%=order.order_id%></h1>
+    <div class="col-sm-8 offset-sm-2 col-xxl-6 offset-xxl-3">
+        <form action="/orders/<%=order._id%>/status" method="POST" novalidate class="validated-form needs-validation" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="mb-3">
+                        <label for="status-name" class="form-label">Назва статусу</label>
+                        <input type="text" class="form-control" id="status-name" name="name" required> 
+                        <div class="invalid-feedback">
+                            Це поле має бути заповнене.
+                        </div>
+                    </div>                    
+                </div>
+                <div class="col-lg-6">            
+                    <div class="mb-3">
+                        <label for="status-date" class="form-label">Дата статусу</label>
+                        <input type="date" class="form-control" id="status-date" name="date" value="<%=today.toISOString().substr(0, 10)%>" required>
+                        <div class="invalid-feedback">
+                            Це поле має бути заповнене.
+                        </div>
+                    </div>                     
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="desc" class="form-label">Опис статусу</label>
+                <textarea class="form-control" name="desc" id="desc" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="images" class="form-label">Фото</label>
+                <input type="file" class="form-control" id="images" name="images" multiple>
+            </div>
+            <div class="mb-3">
+                <a href="/orders/<%=order._id%>" class="btn btn-primary">Відмінити</a>
+                <button type="submit" class="btn btn-primary">Зберегти</button>
+            </div>            
+        </form>
+    </div>
+</div>
+<script src="/javascripts/validateForms.js"></script>

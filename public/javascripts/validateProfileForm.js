@@ -30,6 +30,34 @@ const validationPhone = (input) => {
 	setValid(input, msg);
 };
 
+const validationBirthday = (input) => {
+	let msg = '';
+	const day = document.querySelector('#day');
+	const month = document.querySelector('#month');
+	const year = document.querySelector('#year');
+	console.log(day.value);
+
+	if (day.value != '') {
+		if (day.value < 1 || day.value > 31 || !+day.value) msg += 'Вкажіть день в діапазоні 1-31.<br>';
+		if (day.value > 30 && (month.value == 4 || month.value == 6 || month.value == 9 || month.value == 11))
+			msg += 'У вказаному місяці 30 днів. Виправте дату або місяць.<br>';
+		if (year.value == '' || (year.value != '' && year.value % 4 == 0)) {
+			if (day.value > 29 && month.value == 2)
+				msg += 'У вказаному місяці максимум 29 днів. Виправте дату або місяць.<br>';
+		}
+		if (year.value != '' && year.value % 4 != 0) {
+			if (day.value > 28 && month.value == 2) msg += 'У вказаному місяці 28 днів. Виправте дату або місяць.<br>';
+		}
+	}
+	if (month.value != '') {
+		if (month.value < 1 || month.value > 12 || !+month.value) msg += 'Вкажіть місяць в діапазоні 1-12.<br>';
+	}
+	if (year.value != '') {
+		if (year.value < 1920 || year.value > 2100 || !+year.value) msg += 'Некоректно вказаний рік.<br>';
+	}
+	setValid(input, msg);
+};
+
 const validationStreeng50 = (input) => {
 	let msg = '';
 	if (input.value != '') {
@@ -94,6 +122,7 @@ const setValid = (input, status) => {
 	const street = document.querySelector('#street');
 	const house = document.querySelector('#house');
 	const apt = document.querySelector('#apt');
+	const birthday = document.querySelector('#birthday');
 
 	formatPhone(phone);
 
@@ -102,6 +131,7 @@ const setValid = (input, status) => {
 		validate(validationPhone, phone);
 		validate(validationStreeng50, f_name);
 		validate(validationStreeng50, l_name);
+		validate(validationBirthday, birthday);
 		validate(validationStreeng50, city);
 		validate(validationStreeng50, street);
 		validate(validationStreeng10, house);

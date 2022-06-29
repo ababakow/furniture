@@ -1,0 +1,54 @@
+<% layout('/layouts/boilerplate') %> 
+<div class="row after-nav">
+    <h1 class="text-center">Редагування замовлення</h1>
+    <div class="col-8 offset-2 col-xxl-6 offset-xl-3">
+        <form action="/orders/<%=order._id%>?_method=PUT" method="POST" novalidate class="validated-form needs-validation">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Назва замовлення</label>
+                        <input type="text" class="form-control" id="name" name="name" value="<%=order.name%>" required>
+                        <div class="invalid-feedback">
+                            Це поле має бути заповнене.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="mb-3">                    
+                        <label for="client" class="form-label">Клієнт</label>
+                        <select class="form-select" id="client" name="client" required>
+                            <% for(let user of users){ %> 
+                                <% if (order.client.equals(user._id)) { %> 
+                                    <option value="<%=user._id%>" selected><%=user.username%></option>
+                                <% } else { %>
+                                    <option value="<%=user._id%>"><%=user.username%></option>
+                                <% } %>  
+                            <% } %> 
+                        </select>
+                        <div class="invalid-feedback">
+                            Це поле має бути заповнене.
+                        </div>
+                    </div>  
+                </div>
+                <div class="col-lg-4">
+                    <div class="mb-3">
+                        <label for="startDate" class="form-label">Дата початку робіт</label>
+                        <input type="date" class="form-control" id="startDate" name="startDate" value="<%=order.startDate.toISOString().substr(0, 10)%>" required>
+                        <div class="invalid-feedback">
+                            Це поле має бути заповнене.
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Опис замовлення</label>
+                <textarea class="form-control" name="description" id="description" rows="3"><%=order.description%></textarea>
+            </div>
+            <div class="mb-3">
+                <a href="/orders/<%=order._id%>" class="btn btn-primary">Відмінити</a>
+                <button type="submit" class="btn btn-primary">Зберегти</button>
+            </div>            
+        </form>
+    </div>
+</div>
+<script src="/javascripts/validateForms.js"></script>

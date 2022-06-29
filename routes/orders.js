@@ -3,22 +3,15 @@ const router = express.Router();
 const orders = require('../controllers/orders');
 
 const catchAsync = require('../utils/catchAsync');
-// const { validateShopItem } = require('../middleware');
+const { validateOrder } = require('../middleware');
 
-// const multer = require('multer');
-// const upload = multer({ dest: './public/imgs/shop' });
-
-router.route('/').get(catchAsync(orders.index));
-// 	.post(upload.array('images'), validateShopItem, catchAsync(shop.createShopItem));
-
-// router.route('/new').get(shop.renderNewForm);
-
-// router
-// 	.route('/:id')
-// 	.get(catchAsync(shop.showShopItem))
-// 	.put(upload.array('images'), validateShopItem, catchAsync(shop.updateShopItem))
-// 	.delete(catchAsync(shop.deleteShopItem));
-
-// router.get('/:id/edit', catchAsync(shop.renderEditForm));
+router.route('/').get(catchAsync(orders.index)).post(validateOrder, catchAsync(orders.createOrder));
+router.route('/new').get(catchAsync(orders.renderNewOrder));
+router
+	.route('/:id')
+	.get(catchAsync(orders.showOrder))
+	.put(validateOrder, catchAsync(orders.updateOrder))
+	.delete(catchAsync(orders.deleteOrder));
+router.get('/:id/edit', catchAsync(orders.renderEditOrder));
 
 module.exports = router;

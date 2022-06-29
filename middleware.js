@@ -1,4 +1,11 @@
-const { catalogSchema, shopSchema, userSchema } = require('./utils/schemasValidation');
+const {
+	catalogSchema,
+	shopSchema,
+	userRegisterSchema,
+	userUpdateSchema,
+	orderSchema,
+	statusSchema
+} = require('./utils/schemasValidation');
 const AppError = require('./utils/appError');
 
 module.exports.validateProduct = (req, res, next) => {
@@ -21,10 +28,39 @@ module.exports.validateShopItem = (req, res, next) => {
 	}
 };
 
-module.exports.validateUser = (req, res, next) => {
-	const { error } = userSchema.validate(req.body);
+module.exports.validateRegisterUser = (req, res, next) => {
+	const { error } = userRegisterSchema.validate(req.body);
 	if (error) {
-		// throw error;
+		const msg = error.details.map((el) => el.message).join(',');
+		throw new AppError(msg, 400);
+	} else {
+		next();
+	}
+};
+
+module.exports.validateUpdateUser = (req, res, next) => {
+	const { error } = userUpdateSchema.validate(req.body);
+	if (error) {
+		const msg = error.details.map((el) => el.message).join(',');
+		throw new AppError(msg, 400);
+	} else {
+		next();
+	}
+};
+
+module.exports.validateOrder = (req, res, next) => {
+	const { error } = orderSchema.validate(req.body);
+	if (error) {
+		const msg = error.details.map((el) => el.message).join(',');
+		throw new AppError(msg, 400);
+	} else {
+		next();
+	}
+};
+
+module.exports.validateStatus = (req, res, next) => {
+	const { error } = statusSchema.validate(req.body);
+	if (error) {
 		const msg = error.details.map((el) => el.message).join(',');
 		throw new AppError(msg, 400);
 	} else {
@@ -34,7 +70,6 @@ module.exports.validateUser = (req, res, next) => {
 
 module.exports.isLoggedIn = (req, res, next) => {
 	if (!req.isAuthenticated()) {
-		// req.session.returnTo = req.originalUrl;
 		req.flash('error', 'Будь ласка, увійти у свій аккаунт.');
 		return res.redirect('/login');
 	}
