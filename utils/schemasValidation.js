@@ -39,6 +39,7 @@ module.exports.catalogSchema = Joi.object({
 module.exports.shopSchema = Joi.object({
 	title: Joi.string().required().max(250).escapeHTML(),
 	description: Joi.string().required().max(10000).escapeHTML(),
+	characteristics: Joi.string().required().max(10000).escapeHTML(),
 	price: Joi.number().required().min(0).max(1000000),
 	inStock: Joi.boolean().required(),
 	images: Joi.array().max(10).items(
@@ -109,4 +110,16 @@ module.exports.statusSchema = Joi.object({
 		}).required()
 	),
 	deleteImages: Joi.array()
+});
+
+module.exports.actionSchema = Joi.object({
+	title: Joi.string().max(250).required().escapeHTML(),
+	description: Joi.string().required().escapeHTML(),
+	finishDate: Joi.date().empty(''),
+	isActive: Joi.boolean(),
+	image: Joi.object({
+		name: Joi.string().required().escapeHTML(),
+		url: Joi.string().required().escapeHTML()
+	}),
+	deleteImage: Joi.object()
 });

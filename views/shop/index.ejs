@@ -25,10 +25,7 @@
                     <p class="card-text">Товар тимчасово відсутній</p>
                 <% } %> 
                 <p class="card-text"><%=item.price%> грн.</p>
-                <% let [year, month, day] = [item.createdAt.getFullYear(), item.createdAt.getMonth(), item.createdAt.getDate()] %> 
-                <p class="card-text"><%=day%>-<%=month%>-<%=year%></p>
-                <br>
-                <a href="/shop/<%=item.id%>" class="btn btn-primary">Перейти</a>
+                <a href="/shop/<%=item.id%>" class="btn btn-primary">Докладніше</a>
             </div>
         </div>
     <% } %> 

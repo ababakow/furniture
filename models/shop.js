@@ -11,6 +11,10 @@ const shopItemSchema = new mongoose.Schema(
 			type: String,
 			required: true
 		},
+		characteristics: {
+			type: String,
+			required: true
+		},
 		images: [ imageSchema ],
 		price: {
 			type: Number,

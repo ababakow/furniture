@@ -5,9 +5,6 @@ const mailer = require('../nodemailer/nodemailer');
 router.get('/', (req, res) => {
 	res.render('home');
 });
-router.get('/actions', (req, res) => {
-	res.render('actions');
-});
 router.get('/contacts', (req, res) => {
 	res.render('contacts');
 });

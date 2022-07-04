@@ -1,7 +1,8 @@
 const Order = require('../models/order');
 const User = require('../models/user');
 
-const { unlink } = require('fs/promises');
+const fs = require('fs');
+const { unlink, rmdir } = require('fs/promises');
 
 module.exports.index = async (req, res) => {
 	if (JSON.stringify(req.query) == '{}' || req.query.filter == 'all') {
@@ -77,11 +78,13 @@ module.exports.updateOrder = async (req, res) => {
 module.exports.deleteOrder = async (req, res) => {
 	const { id } = req.params;
 	const deletedOrder = await Order.findByIdAndDelete(id).populate('status');
+	const dir = `./public/imgs/orders/${id}`;
 	for (let status of deletedOrder.status) {
 		for (let img of status.images) {
 			await unlink(`./public${img.url}`);
 		}
 	}
+	if (fs.existsSync(dir)) rmdir(dir);
 	req.flash('success', `Замовлення успішно видалено!`);
 	res.redirect('/orders');
 };

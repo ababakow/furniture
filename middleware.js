@@ -4,7 +4,8 @@ const {
 	userRegisterSchema,
 	userUpdateSchema,
 	orderSchema,
-	statusSchema
+	statusSchema,
+	actionSchema
 } = require('./utils/schemasValidation');
 const AppError = require('./utils/appError');
 
@@ -60,6 +61,16 @@ module.exports.validateOrder = (req, res, next) => {
 
 module.exports.validateStatus = (req, res, next) => {
 	const { error } = statusSchema.validate(req.body);
+	if (error) {
+		const msg = error.details.map((el) => el.message).join(',');
+		throw new AppError(msg, 400);
+	} else {
+		next();
+	}
+};
+
+module.exports.validateAction = (req, res, next) => {
+	const { error } = actionSchema.validate(req.body);
 	if (error) {
 		const msg = error.details.map((el) => el.message).join(',');
 		throw new AppError(msg, 400);

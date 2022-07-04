@@ -1,0 +1,47 @@
+<% layout('/layouts/boilerplate') %> 
+<div class="row after-nav">
+    <div class="col-9">
+        <h1>Акції</h1>
+    </div>
+    <div class="col-3 d-flex align-items-center justify-content-end">
+        <a href="/actions/new" class="btn btn-success">Додати акцію</a>
+    </div>
+</div>
+<%-include('../partials/flash')%>
+<div class="row">
+    <% for(let action of actions) { %>
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-5">
+                    <% if (action.image){ %> 
+                        <img src="<%=action.image.url%>" class="img-fluid rounded-start" alt="...">
+                    <% } %> 
+                </div>
+                <div class="col-md-7">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h5 class="card-title"><%=action.title%></h5>
+                            <div>
+                                <a href="/actions/<%=action._id%>/edit" class="btn">Редагувати</a>
+                                <form action="/actions/<%=action._id%>?_method=DELETE"  method="POST">
+                                    <button type="submit" class="btn btn-danger">Видалити</button>
+                                </form>
+                            </div>
+                        </div>
+                        <p class="card-text"><%=action.description%></p>
+                        <% if (action.isActive){ %>
+                            <% if (action.finishDate){ %>
+                                <p class="card-text"><strong class="text-success">Акція діє до: <%=action.finishDate.getDate()%>-<%=action.finishDate.getMonth()%>-<%=action.finishDate.getFullYear()%></strong></p>
+                            <% } else { %>
+                                <p class="card-text"><strong class="text-success">Акція активна</strong></p>
+                            <% } %> 
+                        <% } else { %>
+                                <p class="card-text"><strong class="text-denger">Акцію завершено</strong></p>
+                        <% } %>                         
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% } %> 
+    <div class="after-nav"></div>
+</div>

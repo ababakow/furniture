@@ -17,7 +17,7 @@ module.exports.createStatus = async (req, res) => {
 	const { id } = req.params;
 	const status = new Status(req.body);
 	const order = await Order.findById(id);
-	status.images = req.files.map((f) => ({ url: `/imgs/orders/${f.filename}`, name: f.filename }));
+	status.images = req.files.map((f) => ({ url: `/imgs/orders/${id}/${f.filename}`, name: f.filename }));
 	order.status.unshift(status);
 	await status.save();
 	await order.save();
@@ -43,7 +43,7 @@ module.exports.renderEditStatus = async (req, res) => {
 module.exports.updateStatus = async (req, res) => {
 	const { id, statusId } = req.params;
 	const status = await Status.findByIdAndUpdate(statusId, req.body, { new: true });
-	const imgs = req.files.map((f) => ({ url: `/imgs/orders/${f.filename}`, name: f.filename }));
+	const imgs = req.files.map((f) => ({ url: `/imgs/orders/${id}/${f.filename}`, name: f.filename }));
 	status.images.push(...imgs);
 	await status.save();
 	if (req.body.deleteImages) {

@@ -5,8 +5,9 @@ const status = require('../controllers/status');
 const catchAsync = require('../utils/catchAsync');
 const { validateStatus } = require('../middleware');
 
+const { fileFilter, storageStatus } = require('../settings/multer');
 const multer = require('multer');
-const upload = multer({ dest: './public/imgs/orders' });
+const upload = multer({ storage: storageStatus('./public/imgs/orders'), fileFilter });
 
 router.route('/').post(upload.array('images'), validateStatus, catchAsync(status.createStatus));
 router.route('/new').get(catchAsync(status.renderNewStatus));

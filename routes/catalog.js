@@ -5,8 +5,9 @@ const catalog = require('../controllers/catalog');
 const catchAsync = require('../utils/catchAsync');
 const { validateProduct } = require('../middleware');
 
+const { fileFilter, storage } = require('../settings/multer');
 const multer = require('multer');
-const upload = multer({ dest: './public/imgs/catalog' });
+const upload = multer({ storage: storage('./public/imgs/catalog'), fileFilter });
 
 router
 	.route('/')

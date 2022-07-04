@@ -19,11 +19,9 @@
             <div class="card-body">
                 <h5 class="card-title"><%=product.title%></h5>
                 <p class="card-text"><%=product.description%></p>
-                <% let [year, month, day] = [product.createdAt.getFullYear(), product.createdAt.getMonth(), product.createdAt.getDate()] %> 
-                <p class="card-text"><%=day%>-<%=month%>-<%=year%></p>
                 <a href="/catalog?category=<%=product.category%>"><%=product.categoryToUa()%></a>
                 <br>
-                <a href="/catalog/<%=product.id%>" class="btn btn-primary">Перейти</a>
+                <a href="/catalog/<%=product.id%>" class="btn btn-primary">Докладніше</a>
             </div>
         </div>
     <% } %> 

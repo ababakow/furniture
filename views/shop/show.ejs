@@ -11,16 +11,14 @@
             </div>
             <div class="card-body">
                 <p class="card-text"><%=item.description%></p>
+                <p class="card-text"><%=item.characteristics%></p>
                 <% if (item.inStock){ %>  
                     <p class="card-text">В наявності</p>
                 <% } else { %> 
                     <p class="card-text">Товар тимчасово відсутній</p>
                 <% } %> 
                 <p class="card-text"><%=item.price%> грн.</p>
-                <% let [year, month, day] = [item.createdAt.getFullYear(), item.createdAt.getMonth(), item.createdAt.getDate()] %> 
-                <p class="card-text"><%=day%>-<%=month%>-<%=year%></p>
-                <br>
-                <br>
+                
                 <form class="form mb-2" action="/shop/<%=item.id%>?_method=DELETE" method="POST">
                     <button class="btn btn-danger" type="submit">Видалити</button>
                 </form>
