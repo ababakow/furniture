@@ -11,4 +11,14 @@ const imageSchema = new mongoose.Schema({
 	}
 });
 
+imageSchema.virtual('urlSm').get(function() {
+	return this.url.replace(this.name, `sm/${this.name}`);
+});
+imageSchema.virtual('urlMd').get(function() {
+	return this.url.replace(this.name, `md/${this.name}`);
+});
+imageSchema.virtual('urlHd').get(function() {
+	return this.url.replace(this.name, `hd/${this.name}`);
+});
+
 module.exports = imageSchema;

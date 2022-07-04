@@ -46,11 +46,11 @@
                                                 <% item.images.forEach(function(image, index){ %>
                                                     <% if (index ===0){ %> 
                                                         <div class="carousel-item active">
-                                                            <img src="<%=image.url%>" class="d-block w-100" alt="...">
+                                                            <img src="<%=image.urlMd%>" class="d-block w-100" alt="...">
                                                         </div>
                                                     <% } else { %> 
                                                         <div class="carousel-item">
-                                                            <img src="<%=image.url%>" class="d-block w-100" alt="...">
+                                                            <img src="<%=image.urlMd%>" class="d-block w-100" alt="...">
                                                         </div>
                                                     <% } %> 
                                                 <% }) %>

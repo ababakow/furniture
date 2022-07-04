@@ -81,9 +81,13 @@ module.exports.deleteOrder = async (req, res) => {
 	const dir = `./public/imgs/orders/${id}`;
 	for (let status of deletedOrder.status) {
 		for (let img of status.images) {
-			await unlink(`./public${img.url}`);
+			await unlink(`./public/imgs/orders/${id}/${img.name}`);
+			await unlink(`./public/imgs/orders/${id}/md/${img.name}`);
+			await unlink(`./public/imgs/orders/${id}/hd/${img.name}`);
 		}
 	}
+	if (fs.existsSync(dir + '/md')) rmdir(dir + '/md');
+	if (fs.existsSync(dir + '/hd')) rmdir(dir + '/hd');
 	if (fs.existsSync(dir)) rmdir(dir);
 	req.flash('success', `Замовлення успішно видалено!`);
 	res.redirect('/orders');

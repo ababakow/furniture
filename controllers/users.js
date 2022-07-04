@@ -59,20 +59,16 @@ module.exports.updateProfile = async (req, res) => {
 
 module.exports.renderOrders = async (req, res) => {
 	const orders = await Order.find({ client: req.user._id }).populate('status');
-	// if (orders.length === 0) {
-	// 	return res.render('user/orders', { orders: 'У вас ще немає замовлень.' });
-	// }
 	res.render('user/orders', { orders });
 };
 
 module.exports.getStatusImages = async (req, res) => {
 	const { order_id, status_id } = req.query;
 	const order = await Order.findOne({ order_id }).populate('status');
-	console.log(order);
 	const { name, images } = order.status.filter((item) => item._id == status_id)[0];
 	const data = {
 		name,
-		images: images.map((img) => img.url)
+		images: images.map((img) => img.urlHd)
 	};
 	res.json(data);
 };

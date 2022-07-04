@@ -97,7 +97,7 @@
                                         <% item.images.forEach(function(image, index){ %> 
                                             <% if (index === 0){ %> 
                                                 <div class="carousel-item active">
-                                                    <img src="<%=image.url%>" class="d-block w-100" alt="...">
+                                                    <img src="<%=image.urlMd%>" class="d-block w-100" alt="...">
                                                     <div class="carousel-caption d-none d-md-block">
                                                         <button type="button" class="btn modal-button" data-bs-toggle="modal" data-bs-target="#modal-<%=order.order_id%>-<%=item._id%>">
                                                             Більше фото
@@ -106,7 +106,7 @@
                                                 </div>
                                             <% } else { %>
                                                 <div class="carousel-item ">
-                                                    <img src="<%=image.url%>" class="d-block w-100" alt="...">
+                                                    <img src="<%=image.urlMd%>" class="d-block w-100" alt="...">
                                                     <div class="carousel-caption d-none d-md-block">
                                                         <button type="button" class="btn modal-button" data-bs-toggle="modal" data-bs-target="#modal-<%=order.order_id%>-<%=item._id%>">
                                                             Більше фото
