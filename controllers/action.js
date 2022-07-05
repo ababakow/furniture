@@ -41,8 +41,12 @@ module.exports.updateAction = async (req, res) => {
 	const action = await Action.findByIdAndUpdate(id, req.body, { new: true });
 	if (req.file) {
 		if (action.image) {
-			await unlink(`./public/imgs/action/${action.image.name}`);
-			await unlink(`./public/imgs/action/hd/${action.image.name}`);
+			try {
+				await unlink(`./public/imgs/action/${action.image.name}`);
+				await unlink(`./public/imgs/action/hd/${action.image.name}`);
+			} catch (e) {
+				throw e;
+			}
 		}
 		const image = { name: req.file.filename, url: `/imgs/action/${req.file.filename}` };
 		await normaliseImage(`public${image.url}`, image.name, { hd: true });
@@ -57,8 +61,12 @@ module.exports.deleteAction = async (req, res) => {
 	const { id } = req.params;
 	const deletedAction = await Action.findByIdAndDelete(id);
 	if (deletedAction.image) {
-		await unlink(`./public/imgs/action/${deletedAction.image.name}`);
-		await unlink(`./public/imgs/action/hd/${deletedAction.image.name}`);
+		try {
+			await unlink(`./public/imgs/action/${deletedAction.image.name}`);
+			await unlink(`./public/imgs/action/hd/${deletedAction.image.name}`);
+		} catch (e) {
+			throw e;
+		}
 	}
 	req.flash('success', `Акцію успішно видалено!`);
 	res.redirect('/actions');

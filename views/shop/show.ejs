@@ -18,12 +18,30 @@
                     <p class="card-text">Товар тимчасово відсутній</p>
                 <% } %> 
                 <p class="card-text"><%=item.price%> грн.</p>
-                
-                <form class="form mb-2" action="/shop/<%=item.id%>?_method=DELETE" method="POST">
-                    <button class="btn btn-danger" type="submit">Видалити</button>
-                </form>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmDelete">Видалити</button>
                 <a href="/shop/<%=item.id%>/edit" class="btn btn-primary">Редагувати</a>
             </div>
         </div>
     </div>
+</div>
+
+<div class="modal fade" id="confirmDelete" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content text-center">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalLabel">Видалити позицію з магазину</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <strong>Ви впевнені, що хочете видалити "<%=item.title%>"?</strong><br>
+        Відновити позицію після видалення буде неможливо!
+      </div>
+      <div class="modal-footer">
+        <form action="/shop/<%=item.id%>?_method=DELETE" method="POST" class="mx-auto">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Відмінити</button>
+            <button type="submit" class="btn btn-primary">Видалити</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>

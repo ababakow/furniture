@@ -55,9 +55,13 @@ module.exports.updateStatus = async (req, res) => {
 	await status.save();
 	if (req.body.deleteImages) {
 		for (let img of req.body.deleteImages) {
-			await unlink(`./public/imgs/orders/${id}/${img}`);
-			await unlink(`./public/imgs/orders/${id}/md/${img}`);
-			await unlink(`./public/imgs/orders/${id}/hd/${img}`);
+			try {
+				await unlink(`./public/imgs/orders/${id}/${img}`);
+				await unlink(`./public/imgs/orders/${id}/md/${img}`);
+				await unlink(`./public/imgs/orders/${id}/hd/${img}`);
+			} catch (e) {
+				throw e;
+			}
 		}
 		await status.updateOne({ $pull: { images: { name: { $in: req.body.deleteImages } } } });
 	}
@@ -70,9 +74,13 @@ module.exports.deleteStatus = async (req, res) => {
 	await Order.findByIdAndUpdate(id, { $pull: { status: statusId } });
 	const deletedItem = await Status.findByIdAndDelete(statusId);
 	for (let img of deletedItem.images) {
-		await unlink(`./public/imgs/orders/${id}/${img.name}`);
-		await unlink(`./public/imgs/orders/${id}/md/${img.name}`);
-		await unlink(`./public/imgs/orders/${id}/hd/${img.name}`);
+		try {
+			await unlink(`./public/imgs/orders/${id}/${img.name}`);
+			await unlink(`./public/imgs/orders/${id}/md/${img.name}`);
+			await unlink(`./public/imgs/orders/${id}/hd/${img.name}`);
+		} catch (e) {
+			throw e;
+		}
 	}
 	req.flash('success', `Статус успішно видалено!`);
 	res.redirect(`/orders/${id}`);

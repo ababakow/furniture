@@ -28,7 +28,11 @@ module.exports.storageStatus = (DIR) => {
 		destination: async (req, file, cb) => {
 			const dir = DIR + '/' + req.params.id;
 			if (!fs.existsSync(dir)) {
-				await mkdir(dir);
+				try {
+					await mkdir(dir);
+				} catch (e) {
+					throw e;
+				}
 			}
 			cb(null, dir);
 		},

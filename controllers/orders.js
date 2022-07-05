@@ -3,6 +3,8 @@ const User = require('../models/user');
 
 const fs = require('fs');
 const { unlink, rmdir } = require('fs/promises');
+const e = require('connect-flash');
+const { nextTick } = require('process');
 
 module.exports.index = async (req, res) => {
 	if (JSON.stringify(req.query) == '{}' || req.query.filter == 'all') {
@@ -81,14 +83,22 @@ module.exports.deleteOrder = async (req, res) => {
 	const dir = `./public/imgs/orders/${id}`;
 	for (let status of deletedOrder.status) {
 		for (let img of status.images) {
-			await unlink(`./public/imgs/orders/${id}/${img.name}`);
-			await unlink(`./public/imgs/orders/${id}/md/${img.name}`);
-			await unlink(`./public/imgs/orders/${id}/hd/${img.name}`);
+			try {
+				await unlink(`./public/imgs/orders/${id}/${img.name}`);
+				await unlink(`./public/imgs/orders/${id}/md/${img.name}`);
+				await unlink(`./public/imgs/orders/${id}/hd/${img.name}`);
+			} catch (e) {
+				throw e;
+			}
 		}
 	}
-	if (fs.existsSync(dir + '/md')) rmdir(dir + '/md');
-	if (fs.existsSync(dir + '/hd')) rmdir(dir + '/hd');
-	if (fs.existsSync(dir)) rmdir(dir);
+	try {
+		if (fs.existsSync(dir + '/md')) rmdir(dir + '/md');
+		if (fs.existsSync(dir + '/hd')) rmdir(dir + '/hd');
+		if (fs.existsSync(dir)) rmdir(dir);
+	} catch (e) {
+		throw e;
+	}
 	req.flash('success', `Замовлення успішно видалено!`);
 	res.redirect('/orders');
 };

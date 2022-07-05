@@ -23,9 +23,27 @@
                             <h5 class="card-title"><%=action.title%></h5>
                             <div>
                                 <a href="/actions/<%=action._id%>/edit" class="btn">Редагувати</a>
-                                <form action="/actions/<%=action._id%>?_method=DELETE"  method="POST">
-                                    <button type="submit" class="btn btn-danger">Видалити</button>
-                                </form>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmDelete">Видалити</button>
+                            </div>
+                            <div class="modal fade" id="confirmDelete" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content text-center">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalLabel">Видалити акцію</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <strong>Ви впевнені, що хочете видалити акцію "<%=action.title%>"?</strong><br>
+                                        Відновити акцію після видалення буде неможливо!
+                                    </div>
+                                    <div class="modal-footer">
+                                        <form action="/actions/<%=action._id%>?_method=DELETE"  method="POST" class="mx-auto">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Відмінити</button>
+                                            <button type="submit" class="btn btn-danger">Видалити</button>
+                                        </form>
+                                    </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <p class="card-text"><%=action.description%></p>

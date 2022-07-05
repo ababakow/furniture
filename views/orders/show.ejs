@@ -73,10 +73,30 @@
                                 </div>
                                 <div class="col-md-3 d-flex justify-content-center align-items-center flex-column">
                                     <a href="/orders/<%=order._id%>/status/<%=item._id%>/edit" class="btn btn-primary card-link mb-2">Редагувати</a>
-                                    <form action="/orders/<%=order._id%>/status/<%=item._id%>?_method=DELETE" method="POST" class="d-flex">
-                                        <button type="submit" class="btn btn-danger">Видалити</button>
-                                    </form>
+                                    <button type="button" class="btn btn-danger mx-auto mb-3" data-bs-toggle="modal" data-bs-target="#confirmDeleteStatus">Видалити</button>
                                 </div>
+
+                                <div class="modal fade" id="confirmDeleteStatus" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content text-center">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalLabel">Видалити статус</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <strong>Ви впевнені, що хочете видалити статус?</strong><br>
+                                            Відновити замовлення після видалення буде неможливо!
+                                        </div>
+                                        <div class="modal-footer">
+                                            <form action="/orders/<%=order._id%>/status/<%=item._id%>?_method=DELETE" method="POST" class="mx-auto">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Відмінити</button>
+                                                <button type="submit" class="btn btn-danger">Видалити</button>
+                                            </form>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div> 
+
                             </div>
                         </li>    
                     <% }) %>                    
@@ -84,8 +104,30 @@
             </ul>
         </div>
 
-        <form action="/orders/<%=order._id%>?_method=DELETE" method="POST" class="d-flex">
-            <button type="submit" class="btn btn-danger mx-auto mb-3">Видалити замовлення</button>
-        </form>
+        <div class="d-flex">
+            <button type="button" class="btn btn-danger mx-auto mb-3" data-bs-toggle="modal" data-bs-target="#confirmDelete">Видалити замовлення</button>
+        </div>
     </div>
 </div>
+
+<div class="modal fade" id="confirmDelete" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content text-center">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalLabel">Видалити замовлення</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <strong>Ви впевнені, що хочете видалити замовлення №"<%=order.order_id%>"?</strong><br>
+        Відновити замовлення після видалення буде неможливо!
+      </div>
+      <div class="modal-footer">
+        <form action="/orders/<%=order._id%>?_method=DELETE" method="POST" class="mx-auto">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Відмінити</button>
+            <button type="submit" class="btn btn-danger">Видалити</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

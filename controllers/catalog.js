@@ -64,9 +64,13 @@ module.exports.updateProduct = async (req, res) => {
 	await product.save();
 	if (req.body.deleteImages) {
 		for (let img of req.body.deleteImages) {
-			await unlink(`./public/imgs/catalog/${img}`);
-			await unlink(`./public/imgs/catalog/md/${img}`);
-			await unlink(`./public/imgs/catalog/hd/${img}`);
+			try {
+				await unlink(`./public/imgs/catalog/${img}`);
+				await unlink(`./public/imgs/catalog/md/${img}`);
+				await unlink(`./public/imgs/catalog/hd/${img}`);
+			} catch (e) {
+				throw e;
+			}
 		}
 		await product.updateOne({ $pull: { images: { name: { $in: req.body.deleteImages } } } });
 	}
@@ -78,9 +82,13 @@ module.exports.deleteProduct = async (req, res) => {
 	const { id } = req.params;
 	const deletedProduct = await Products.findByIdAndDelete(id);
 	for (let img of deletedProduct.images) {
-		await unlink(`./public${img.url}`);
-		await unlink(`./public/imgs/catalog/md/${img.name}`);
-		await unlink(`./public/imgs/catalog/hd/${img.name}`);
+		try {
+			await unlink(`./public${img.url}`);
+			await unlink(`./public/imgs/catalog/md/${img.name}`);
+			await unlink(`./public/imgs/catalog/hd/${img.name}`);
+		} catch (e) {
+			throw e;
+		}
 	}
 	req.flash('success', `Продукт успішно видалено!`);
 	res.redirect('/catalog');
