@@ -12,6 +12,14 @@
 	list-style-type: none;
 }
 /* =================================== */
+/* Go To Up Button */
+#goToUp {
+	display: none;
+	position: fixed;
+	bottom: 3%;
+	right: 5%;
+}
+/* =================================== */
 /* NavBar */
 .navbar {
 	background-color: rgba(0, 0, 0, 0.6);
