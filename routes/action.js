@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const action = require('../controllers/action');
 
-const { fileFilter, storage } = require('../settings/multer');
+const { fileFilter, storage } = require('../config/multer');
 const multer = require('multer');
 const upload = multer({ storage: storage('./public/imgs/action'), fileFilter });
 

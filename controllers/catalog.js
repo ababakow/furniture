@@ -1,5 +1,5 @@
 const Products = require('../models/catalog');
-const categories = require('../settings/categories.json');
+const categories = require('../config/categories.json');
 
 const { unlink } = require('fs/promises');
 const { normaliseImage } = require('../utils/sharp');

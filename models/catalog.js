@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const categories = require('../settings/categories.json');
+const categories = require('../config/categories.json');
 const imageSchema = require('./image');
 
 const productSchema = new mongoose.Schema(

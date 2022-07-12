@@ -5,7 +5,7 @@ const status = require('../controllers/status');
 const catchAsync = require('../utils/catchAsync');
 const { validateStatus } = require('../middleware');
 
-const { fileFilter, storageStatus } = require('../settings/multer');
+const { fileFilter, storageStatus } = require('../config/multer');
 const multer = require('multer');
 const upload = multer({ storage: storageStatus('./public/imgs/orders'), fileFilter });
 
