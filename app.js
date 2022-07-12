@@ -72,6 +72,11 @@ app.use((req, res, next) => {
 	res.locals.error = req.flash('error');
 	next();
 });
+app.use((req, res, next) => {
+	req.session.preUrl = req.session.curUrl;
+	req.session.curUrl = req.originalUrl;
+	next();
+});
 ////////////////////////////////////////////////////
 //==============================================
 app.use('/catalog', catalogRoutes);

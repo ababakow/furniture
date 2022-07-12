@@ -9,21 +9,21 @@
     <title>Furniture</title>
 </head>
 <body>
-    <header class="container-fluid">
+    <header class="container-fluid px-0">
         <%- include('../partials/navbar') %> 
     </header>
     
     <main class="container-fluid">
         <%-body%>   
-        <button id="goToUp">На початок</button>     
+        <button id="goToUp">UP</button>     
     </main>
 
-    <footer class="container-fluid">
+    <footer class="container-fluid p-0 m-0">
         <%- include('../partials/footer') %> 
     </footer>
 
     <script src="/javascripts/bootstrap.bundle.min.js"></script>
-    <script src="/javascripts/boilerplate.js"></script>
+    <script type="module" src="/javascripts/boilerplate.js"></script>
     
 </body>
 </html>

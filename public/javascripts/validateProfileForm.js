@@ -1,3 +1,5 @@
+import { formatPhone } from './modules/formatPhone.mjs';
+
 const validate = (f, item) => {
 	f(item);
 	item.addEventListener('input', (e) => {
@@ -72,30 +74,6 @@ const validationStreeng10 = (input) => {
 		if (input.value.length > 10) msg += 'Значення занадто велике.<br>';
 	}
 	setValid(input, msg);
-};
-//--------------------------------------------------------------------------------
-const formatPhone = (input) => {
-	input.addEventListener('focus', (e) => {
-		if (input.value.substr(0, 5) != '+38(0') input.value = '+38(0';
-	});
-
-	input.addEventListener('keydown', (e) => {
-		if (!/\d/.test(e.key) && e.key !== 'Backspace') e.preventDefault();
-		if (e.key === 'Backspace') return;
-
-		if (input.value.length === 3) {
-			input.value += '(';
-		}
-		if (input.value.length === 7) {
-			input.value += ')';
-		}
-		if (input.value.length === 11) {
-			input.value += '-';
-		}
-		if (input.value.length === 14) {
-			input.value += '-';
-		}
-	});
 };
 //--------------------------------------------------------------------------------
 const setValid = (input, status) => {

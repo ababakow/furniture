@@ -103,12 +103,30 @@
         </li>
       </ul>
       <!-- ======================================================================= -->
-      <div class="navbar-nav">
-        <span class="navbar-text d-none d-lg-inline">
+      <div id="nav-phone" class="d-none d-lg-inline navbar-text ">
+        <span>
           <img src="/imgs/navbar/telephone.svg" alt="" width="25" height="18">
           <a href="tel:+380981234567">+38 (098) 123 4567</a>
+          <img src="/imgs/navbar/chevron-down.svg" id="drop-icon" alt="" width="25" height="18">
         </span>
+        <div id="nav-phone-list">
+          <ul>
+            <li>
+              <img src="/imgs/navbar/telephone.svg" alt="" width="25" height="18">
+              <a href="tel:+380981234567">+38 (098) 123 4567</a>
+            </li>
+            <li>
+              <img src="/imgs/navbar/telephone.svg" alt="" width="25" height="18">
+              <a href="tel:+380981234567">+38 (098) 123 4567</a>
+            </li>
+               
+          </ul>
+          <div class="w-100 py-3 bg-success text-center">
+              <a href="" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#callBackModal">Замовити дзвінок</a>
+          </div> 
       </div>
+      </div>
+      
       <!-- ======================================================================= -->
       <% if (currentUser) { %> 
         <div class="navbar-nav text-white">
@@ -142,3 +160,24 @@
     </div>
   </div>
 </nav>
+
+
+<div class="modal fade" id="callBackModal" tabindex="-1" aria-labelledby="callBackModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="callBackModalLabel">Замовити дзвінок</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/contacts/callback" method="POST">
+          <label for="nav-callBackPhone" class="form-label">Введуть ваш номер і ми вам перетелефонуємо</label>
+          <div class="d-flex mb-2">
+            <input type="tel" id="nav-callBackPhone" class="form-control" name="callBackPhone" placeholder="+38(000)000-00-00" maxlength="17">
+            <button type="submit" class="btn btn-light btn-outline-success ms-1">Замовити</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

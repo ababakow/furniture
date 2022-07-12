@@ -1,48 +1,75 @@
 <% layout('/layouts/boilerplate') %> 
-    <div class="card after-nav">
-        <div class="card-header bg-transparent border-success text-center">
-            <h4 class="my-3">Company name</h4>
-            <ul class="contacts">
-                <li>Adress</li>
-                <li><a href="tel:+380981234567">+38 (098) 123 4567</a></li>
-                <li>Email</li>
-            </ul>
-
+    <div class="after-nav">
+        <%-include('./partials/flash')%>
+    </div>
+    <div class="card col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4 mb-2">        
+        <div class="card-header bg-transparent  text-center">
+            <h4 class="my-2">Company name/logo</h4>
+            <p class="m-1">Оберіть зручний спосіб зв'язатися з нами</p>            
         </div>
         <div class="card-body">
-            <h5 class="card-title">Напиши нам</h5>
+            <div class="border-bottom text-center pb-3">
+                <ul class="contacts">
+                    <li><span><img src="/imgs/contacts/adress.svg" alt="Adress"> </span>Adress</li>
+                    <li><span><img src="/imgs/contacts/telephone.svg" alt="Adress"> </span><a href="tel:+380981234567">+38 (098) 123 4567</a></li>
+                    <li><span><img src="/imgs/contacts/mail.svg" alt="Adress"></span> <a href="mailto:info.meblidliavas@gmail.com">info.meblidliavas@gmail.com</a></li>
+                </ul>
+                <div class="d-block">
+                    <a href="https://telegram.me/ababakov" target="_blank"><img src="/imgs/contacts/telegram.svg" alt="Telegram"></a>
+                    <a href="viber://chat?number=%2B380987742245" target="_blank"><img src="/imgs/contacts/viber.svg" alt="Viber"></a>
+                    <a href="" target="_blank"><img src="/imgs/contacts/messenger.svg" alt="Messenger"></a>
+                    <a href="" target="_blank"><img src="/imgs/contacts/facebook.svg" alt="Facebook"></a>
+                    <a href="" target="_blank"><img src="/imgs/contacts/instagram.svg" alt="Instagram"></a>
+                </div>
+            </div>
+            <div class="border-bottom my-3 text-center">
+                <button id="call-request-btn" class="btn btn-outline-success mb-3" data-bs-toggle="collapse" data-bs-target="#callRequest" aria-expanded="false" aria-controls="callRequest">Замовити дзвінок</button>
+                <div class="collapse" id="callRequest">
+                    <form action="/contacts/callback" method="POST">
+                        <label for="callBackPhone" class="form-label">Введуть ваш номер і ми вам перетелефонуємо</label>
+                        <div class="d-flex mb-2">
+                            <input type="tel" id="callBackPhone" class="form-control" name="callBackPhone" placeholder="+38(000)000-00-00" maxlength="17">
+                            <button type="submit" class="btn btn-light btn-outline-success ms-1">Замовити</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <h5 class="card-title text-center">Напишіть нам</h5>
             <form action="/contacts" method="POST" class="needs-validation" novalidate>
                 <div class="row">
-                    <div class="col-6 mb-3">
-                        <label for="name" class="form-label">Ім'я</label>
+                    <div class="mb-2">
+                        <label for="name" class="form-label">Ім'я<span class="text-danger"><strong>*</strong></span></label>
                         <input type="text" class="form-control" id="name" name="name" required>
                         <div class="invalid-feedback">
                             Це поле має бути заповнене.
                         </div>
                     </div>
-                    <div class="col-6 mb-3">
-                        <label for="email" class="form-label">E-mail</label>
+                    <div class="mb-2">
+                        <label for="email" class="form-label">E-mail<span class="text-danger"><strong>*</strong></span></label>
                         <input type="email" class="form-control" id="email" name="email" required>
                         <div class="invalid-feedback">
                             Це поле має бути заповнене.
                         </div>
                     </div>
-                    <div class="col-6 mb-3">
+                    <div class="mb-2">
                         <label for="phone" class="form-label">Телефон</label>
-                        <input type="tel" class="form-control" id="phone" name="phone">
+                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="+38(000)000-00-00" maxlength="17">
                     </div>
-                    <div class="col-12 mb-3">
-                        <label for="message" class="form-label">Текст листа</label>
+                    <div class="col-12 mb-2">
+                        <label for="message" class="form-label">Текст листа<span class="text-danger"><strong>*</strong></span></label>
                         <textarea type="text" class="form-control" rows="4" id="message" name="message" required></textarea>
                         <div class="invalid-feedback">
                             Це поле має бути заповнене.
                         </div>
                     </div>
                 </div>
+                <p><span class="text-danger"><strong>*</strong></span><em><small>Поля обов'язкові для заповлення</small></em></p>
                 <div class="d-flex">
-                    <button class="btn btn-light btn-outline-success px-5 mx-auto">Відправити</button>
+                    <button type="submit" class="btn btn-light btn-outline-success px-5 mx-auto">Відправити</button>
                 </div>
             </form>
         </div>
     </div>
     <script src="/javascripts/validateForms.js"></script>
+    <!-- <script type="module" src="/javascripts/formatPhone.js"></script> -->
+    <script type="module" src="/javascripts/contacts.js"></script>

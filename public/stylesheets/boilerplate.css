@@ -1,5 +1,5 @@
 .after-nav {
-	margin-top: 6rem;
+	margin-top: 5rem;
 }
 
 /* =================================== */
@@ -18,8 +18,30 @@
 	position: fixed;
 	bottom: 3%;
 	right: 5%;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	border: 1px solid rgba(0, 0, 0, 0.9);
+	background-color: rgba(0, 0, 0, 0.2);
+}
+@media (max-width: 800px) {
+	#goToUp {
+		bottom: 6%;
+	}
 }
 /* =================================== */
+/* BODY */
+footer {
+	height: 2.5rem;
+}
+.footer {
+	height: 2.5rem;
+}
+main {
+	min-height: calc(100vh - 5rem - 2.5rem);
+}
+/* ======================================================== */
+/* ======================================================== */
 /* NavBar */
 .navbar {
 	background-color: rgba(0, 0, 0, 0.6);
@@ -63,6 +85,52 @@
 .card-img {
 	filter: contrast(30%);
 }
+/* Nav - phone ()()()()()()()*/
+#nav-phone {
+	position: relative;
+}
+#nav-phone > span {
+	position: relative;
+	z-index: 1;
+}
+#nav-phone-list {
+	position: absolute;
+	width: 110%;
+	top: 0rem;
+	left: calc(-200%/12/2);
+	z-index: 0;
+	padding-top: 2rem;
+	background-color: rgb(29, 24, 24);
+	transition: 0.7s;
+	height: 2rem;
+	overflow: hidden;
+	opacity: 0;
+}
+#nav-phone:hover #nav-phone-list {
+	opacity: 1;
+	box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, 0.2);
+	height: 13rem;
+}
+#drop-icon {
+	transition: 0.7s;
+}
+#nav-phone:hover #drop-icon {
+	transform: rotate(180deg);
+}
+#nav-phone-list li {
+	padding-top: 1.5rem;
+	padding-left: 1rem;
+	list-style: none;
+}
+
+#nav-phone-list ul {
+	padding-left: 0;
+	margin-bottom: 0;
+}
+#nav-phone-list div {
+	margin-top: 1.5rem;
+}
+
 /* ------- */
 .grid {
 	position: relative;
