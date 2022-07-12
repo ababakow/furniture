@@ -1,8 +1,0 @@
-MAILER_MAIL = info.meblidliavas@gmail.com
-MAILER_PASS = M2&3jvSK!23oP9
-
-GOOGLE_CLIENT_ID = 1014032861350-bbt02b5n1svk27nfctl008tbaffpd9c1.apps.googleusercontent.com
-GOOGLE_CLIENT_SECRET = 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
-OAUTH_REFRESH_TOKEN = 1//04_yyfncalvRpCgYIARAAGAQSNwF-L9IrFmj4F25vJ4li-of4DVXB5uUF7KUms-f6V0lmacG5kvwbg3F6Jwk96ACDb1f9zXVgPtA
-
-nodmailer_google_article = https://www.freecodecamp.org/news/use-nodemailer-to-send-emails-from-your-node-js-server/

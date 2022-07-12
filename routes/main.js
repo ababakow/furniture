@@ -7,12 +7,17 @@ const User = require('../models/user');
 router.get('/', (req, res) => {
 	res.render('home');
 });
-router.get('/contacts', (req, res) => {
-	if (res.locals.currentUser) {
-		console.log(res.locals.currentUser);
-	}
-	res.render('contacts');
-});
+router.get(
+	'/contacts',
+	catchAsync(async (req, res) => {
+		let userData = { name: '', email: '', phone: '' };
+		if (req.isAuthenticated()) {
+			const user = await User.findById(req.user._id);
+			userData = { name: `${user.f_name} ${user.l_name}`, email: user.email, phone: user.phone };
+		}
+		res.render('contacts', { userData });
+	})
+);
 router.post(
 	'/contacts',
 	catchAsync(async (req, res) => {
