@@ -1,0 +1,219 @@
+/* =====================NavBar===================== */
+.nav-bg {
+	background-color: rgba(0, 0, 0, 0.6) !important;
+	transition: 1s;
+}
+#navbar {
+	background-color: rgb(31, 31, 31);
+	transition: 1s;
+}
+#navbar .nav-link {
+	color: white;
+	border-bottom: 0.1rem solid transparent;
+	transition: 0.5s;
+}
+#navbar .nav-link:hover {
+	border-bottom-color: white;
+}
+.navbar-toggler {
+	color: white;
+	border: 0;
+}
+#nav-catalog {
+	position: fixed !important;
+	top: 5rem !important;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.1);
+	border: 1px solid rgb(49, 49, 49);
+	border-radius: 0;
+	padding: 0;
+	overflow: hidden;
+	animation: transform-top 1s;
+}
+
+/* -----Nav Catalog Item ----- */
+.nav-catalog-item {
+	width: calc(100%/6);
+	position: relative;
+}
+.nav-catalog-item figure{
+	background-color: black;
+	overflow: hidden;
+}
+.nav-catalog-item a {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	font-size: 0;
+	opacity: 0;
+}
+.nav-catalog-item h5{
+	position: relative;
+	top: 1rem;
+	transition: 0.5s;
+}
+.nav-catalog-item p{
+	position: relative;	
+	top: 100%;
+	transition: 00.5s;
+}
+
+.nav-catalog-item img{
+	background-color: black;
+	opacity: 0.8;
+	transition: 0.7s;
+}
+.nav-catalog-item:hover img{
+	opacity: 0.6;
+}
+.nav-catalog-item:hover h5{
+	letter-spacing:0.1rem;
+}
+.nav-catalog-item:hover p{
+	top: 30%;
+}
+@media (max-width: 1200px) {
+.nav-catalog-item h5{
+	font-size: 1rem;
+}	
+}
+/* -----Nav User ----- */
+#nav-user {
+	position: relative;
+}
+#nav-user > ul {
+	position: absolute;
+	left: -2rem;
+	top: 3.5rem;
+	border-radius: 0;
+	background-color: rgba(0, 0, 0, 1);
+	overflow: hidden;
+	animation: transform-top 1s;
+}
+#nav-user > ul a {
+	color: white;
+}
+#nav-user > ul a:hover {
+	color: black;
+	background-color: rgb(228, 228, 228);
+}
+
+@media (max-width: 991px) {
+	#navbar .nav-link:hover {
+		border-bottom: none;
+	}
+	#nav-catalog {
+		position: static !important;
+		background-color: rgba(0, 0, 0, 0);
+		border: none;
+	}
+	#nav-catalog > div {
+		flex-wrap: wrap !important;
+		justify-content: center;
+		border: 1px solid rgb(207, 207, 207);
+	}
+	#nav-user > ul {
+		position: static;
+		background-color: rgba(0, 0, 0, 0);
+		border: 1px solid rgb(207, 207, 207);
+		margin: 1rem auto;
+		width: 12rem;
+	}
+}
+/* -----Nav - phone-----*/
+#nav-phone {
+	position: relative;
+}
+#nav-phone > span {
+	position: relative;
+	z-index: 1;
+}
+#nav-phone-list {
+	position: absolute;
+	width: 110%;
+	top: 0rem;
+	left: calc(-200%/12/2);
+	z-index: 0;
+	padding-top: 2rem;
+	background-color: rgb(29, 24, 24);
+	transition: 0.7s;
+	height: 2rem;
+	overflow: hidden;
+	opacity: 0;
+}
+#nav-phone:hover #nav-phone-list {
+	opacity: 1;
+	box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, 0.2);
+	height: 13rem;
+}
+#drop-icon {
+	transition: 0.7s;
+}
+#nav-phone:hover #drop-icon {
+	transform: rotate(180deg);
+}
+#nav-phone-list li {
+	padding-top: 1.5rem;
+	padding-left: 1rem;
+	list-style: none;
+}
+#nav-phone-list ul {
+	padding-left: 0;
+	margin-bottom: 0;
+}
+#nav-phone-list div {
+	margin-top: 1.5rem;
+}
+/* -----Go To Up Button-----*/
+#goToUp {
+	display: none;
+	position: fixed;
+	bottom: 3%;
+	right: 5%;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	border: 1px solid rgba(173, 173, 173, 1);
+	background-color: rgb(235, 235, 235);
+	transition: 00.5s;
+}
+#goToUp:hover{
+	border: 1px solid rgb(0, 0, 0);
+	background-color: rgb(255, 255, 255);
+}
+@media (max-width: 800px) {
+	#goToUp {
+		bottom: 6%;
+	}
+}
+/* =====================Body===================== */
+footer {
+	height: 2.5rem;
+}
+.footer {
+	height: 2.5rem;
+}
+main {
+	min-height: calc(100vh - 5rem - 2.5rem);
+}
+#flash {
+	opacity: 0.8;
+}
+/* HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH */
+
+.after-nav {
+	margin-top: 5rem;
+}
+
+
+
+/* =====================Contacts Page===================== */
+.contacts {
+	margin-left: 0;
+	padding-left: 0;
+}
+.contacts li {
+	list-style-type: none;
+}

@@ -1,0 +1,21 @@
+@keyframes transform-top {
+	0% {
+		transform: rotateX(-90deg);
+		transform-origin: top;
+	}
+	/* 70% {
+		transform: rotateX(20deg);
+	} */
+	100% {
+		transform: rotateX(0deg);
+		transform-origin: top;
+	}
+}
+@keyframes slidein-right {
+	0% {
+		transform: transLateX(-100%);
+	}
+	100% {
+		transform: transLateX(0%);
+	}
+}

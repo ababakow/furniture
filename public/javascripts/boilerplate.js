@@ -9,7 +9,7 @@ function listenGoToUpBtn() {
 
 	window.addEventListener('scroll', (e) => {
 		if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-			goToUp.style.display = 'block';
+			goToUp.style.display = 'flex';		
 		} else {
 			goToUp.style.display = 'none';
 		}

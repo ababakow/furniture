@@ -1,102 +1,103 @@
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top py-3">
+<nav id="navbar" class="navbar navbar-expand-lg navbar-dark  py-3">
   <div class="container-fluid">
+    <!-- ======================================================================= -->
     <a class="navbar-brand py-0" href="/">
       <img class="p-0" src="/imgs/navbar/logo.svg" alt="" width="40" height="40">
     </a>
+    <!-- ======================================================================= -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <!-- <span class="navbar-toggler-icon"></span> -->
       <img src="/imgs/navbar/menu.svg" alt="" class="d-flex" width="30" height="30">
     </button>
     <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-      <ul class="navbar-nav">
-        <!-- ======================================================================= -->
+      <ul class="navbar-nav text-center">
+        <!-- --------------------------------------------------- -->  
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
             ПОРТФОЛІО
           </a>
-          <div class="dropdown-menu dropdown-menu-catalog" aria-labelledby="navbarDropdown">
-            <div class="d-flex nav-dropdown">
- 
-                <a href="/catalog?category=kitchens">
-                  <div class="card text-white m-2 nav-dropdown-card border-0">
-                    <img src="/imgs/main/1.jpg" class="card-img" alt="...">
-                    <div class="card-img-overlay d-flex align-items-center justify-content-center">
-                      <h5 class="card-title m-0">КУХНІ</h5>
-                    </div>
-                  </div>
-                </a>  
-                <a href="/catalog?category=wardrobes">
-                  <div class="card text-white m-2 nav-dropdown-card border-0">
-                    <img src="/imgs/main/1.jpg" class="card-img" alt="...">
-                    <div class="card-img-overlay d-flex align-items-center justify-content-center">
-                      <h5 class="card-title m-0">ШАФИ</h5>
-                    </div>
-                  </div>
-                </a>
-                <a href="/catalog?category=living">
-                  <div class="card text-white m-2 nav-dropdown-card border-0">
-                    <img src="/imgs/main/1.jpg" class="card-img" alt="...">
-                    <div class="card-img-overlay d-flex align-items-center justify-content-center">
-                      <h5 class="card-title m-0">ВІТАЛЬНІ</h5>
-                    </div>
-                  </div>
-                </a>
-                <a href="/catalog?category=chests">
-                  <div class="card text-white m-2 nav-dropdown-card border-0">
-                    <img src="/imgs/main/1.jpg" class="card-img" alt="...">
-                    <div class="card-img-overlay d-flex align-items-center justify-content-center">
-                      <h5 class="card-title m-0">КОМОДИ ТА ТУМБИ</h5>
-                    </div>
-                  </div>
-                </a>
-                <a href="/catalog?category=hallways">
-                  <div class="card text-white m-2 nav-dropdown-card border-0">
-                    <img src="/imgs/main/1.jpg" class="card-img" alt="...">
-                    <div class="card-img-overlay d-flex align-items-center justify-content-center">
-                      <h5 class="card-title m-0">ПЕРЕДПОКІЙ</h5>
-                    </div>
-                  </div>
-                </a>
-                <a href="/catalog?category=glass">
-                  <div class="card text-white m-2 nav-dropdown-card border-0">
-                    <img src="/imgs/main/1.jpg" class="card-img" alt="...">
-                    <div class="card-img-overlay d-flex align-items-center justify-content-center">
-                      <h5 class="card-title m-0">ВИРОБИ ЗІ СКЛА</h5>
-                    </div>
-                  </div>
-                </a>
+          <div id="nav-catalog" class="dropdown-menu mw-100" aria-labelledby="navbarDropdown" >
+            <div class="d-flex">
+
+              <div class="nav-catalog-item">
+                <figure class="card text-white m-2 catalog-card border-0">
+                  <img src="/imgs/main/1.jpg" alt="..."/>
+                  <figcaption class="card-img-overlay d-flex flex-column justify-content-center">
+                    <h5 class="card-title m-0 text-center">КУХНІ</h5>
+                    <p class="text-center">детальніше</p>
+                    <a href="/catalog?category=kitchens">натисніть щоб перейти</a>
+                  </figcaption>     
+                </figure>
+              </div>
+              <div class="nav-catalog-item">
+                <figure class="card text-white m-2 catalog-card border-0">
+                  <img src="/imgs/main/2.jpg" alt="..."/>
+                  <figcaption class="card-img-overlay d-flex flex-column justify-content-center">
+                    <h5 class="card-title m-0 text-center">ШАФИ</h5>
+                    <p class="text-center">детальніше</p>
+                    <a href="/catalog?category=wardrobes">натисніть щоб перейти</a>
+                  </figcaption>     
+                </figure>
+              </div>
+              <div class="nav-catalog-item">
+                <figure class="card text-white m-2 catalog-card border-0">
+                  <img src="/imgs/main/3.jpg" alt="..."/>
+                  <figcaption class="card-img-overlay d-flex flex-column justify-content-center">
+                    <h5 class="card-title m-0 text-center">ВІТАЛЬНІ</h5>
+                    <p class="text-center">детальніше</p>
+                    <a href="/catalog?category=living">натисніть щоб перейти</a>
+                  </figcaption>     
+                </figure>
+              </div>
+              <div class="nav-catalog-item">
+                <figure class="card text-white m-2 catalog-card border-0">
+                  <img src="/imgs/main/1.jpg" alt="..."/>
+                  <figcaption class="card-img-overlay d-flex flex-column justify-content-center">
+                    <h5 class="card-title m-0 text-center">КОМОДИ<br>ТА ТУМБИ</h5>
+                    <p class="text-center">детальніше</p>
+                    <a href="/catalog?category=chests">натисніть щоб перейти</a>
+                  </figcaption>     
+                </figure>
+              </div>
+              <div class="nav-catalog-item">
+                <figure class="card text-white m-2 catalog-card border-0">
+                  <img src="/imgs/main/2.jpg" alt="..."/>
+                  <figcaption class="card-img-overlay d-flex flex-column justify-content-center">
+                    <h5 class="card-title m-0 text-center">ПЕРЕДПОКІЙ</h5>
+                    <p class="text-center">детальніше</p>
+                    <a href="/catalog?category=hallways">натисніть щоб перейти</a>
+                  </figcaption>     
+                </figure>
+              </div>
+              <div class="nav-catalog-item">
+                <figure class="card text-white m-2 catalog-card border-0">
+                  <img src="/imgs/main/3.jpg" alt="..."/>
+                  <figcaption class="card-img-overlay d-flex flex-column justify-content-center">
+                    <h5 class="card-title m-0 text-center">ВИРОБИ<br>ЗІ СКЛА</h5>
+                    <p class="text-center">детальніше</p>
+                    <a href="/catalog?category=glass">натисніть щоб перейти</a>
+                  </figcaption>     
+                </figure>
+              </div>
 
             </div>
           </div>
         </li>
-        <!-- ======================================================================= -->
-        <!-- <div class="vr d-none d-lg-inline-block text-white mx-3"></div>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            МАГАЗИН
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="/shop">Магазин</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="/shop/furniture">Фурнітура</a></li>
-            <li><a class="dropdown-item" href="/shop/final-production">Готові вироби</a></li>
-          </ul>
-        </li> -->
+        <!-- --------------------------------------------------- -->
         <div class="vr d-none d-lg-inline-block text-white mx-3"></div>
         <li class="nav-item">
           <a class="nav-link" href="/shop">МАГАЗИН</a>
         </li>
-        <!-- ======================================================================= -->
+        <!-- --------------------------------------------------- -->
         <div class="vr d-none d-lg-inline-block text-white mx-3"></div>
         <li class="nav-item">
           <a class="nav-link" href="/actions">АКЦІЇ</a>
         </li>
-        <!-- ======================================================================= -->
+        <!-- --------------------------------------------------- -->
         <div class="vr d-none d-lg-inline-block text-white mx-3"></div>
         <li class="nav-item">
           <a class="nav-link" href="/contacts">КОНТАКТИ</a>
         </li>
-        <!-- ======================================================================= -->
+        <!-- --------------------------------------------------- -->
         <div class="vr d-none d-lg-inline-block text-white mx-3"></div>
         <li class="nav-item">
           <a class="nav-link" href="/orders">ЗАМОВЛЕННЯ</a>
@@ -124,61 +125,34 @@
           <div class="w-100 py-3 bg-success text-center">
               <a href="" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#callBackModal">Замовити дзвінок</a>
           </div> 
+        </div>
       </div>
-      </div>
-      
       <!-- ======================================================================= -->
-      <% if (currentUser) { %> 
-        <div class="navbar-nav text-white">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle p-0 px-lg-4" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <span class="p-1"><%= currentUser.username %></span>
-              <img class="p-0 d-none d-lg-inline" src="/imgs/navbar/user.svg" alt="Мій кабінет" width="30" height="30">
-              <span class="d-lg-none">МІЙ КАБІНЕТ</span>
-              
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="/profile">Мій профіль</a></li>
-              <li><a class="dropdown-item" href="/my-orders">Мої замовлення</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li>
-                <form action="/logout" method="POST">
-                  <button class="btn">Вийти</button>
-                </form>
-              </li>
-            </ul>
-          </li>
-          <!-- <a class="px-lg-4 py-2 text-white" href="/user">
+      <div id="nav-user" class="text-white text-center">
+        <% if (currentUser) { %>         
+          <a class="nav-link dropdown-toggle p-0 pe-lg-4" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="p-1"><%= currentUser.username %></span>
             <img class="p-0 d-none d-lg-inline" src="/imgs/navbar/user.svg" alt="Мій кабінет" width="30" height="30">
             <span class="d-lg-none">МІЙ КАБІНЕТ</span>
-          </a> -->
+          </a>
+          <ul class="dropdown-menu text-center px-2" aria-labelledby="userDropdown">
+            <li><a class="dropdown-item" href="/profile">Мій профіль</a></li>
+            <li><a class="dropdown-item" href="/my-orders">Мої замовлення</a></li>
+            <li><hr class="dropdown-divider border-top"></li>
+            <li>
+              <form action="/logout" method="POST" class="d-grid">
+                <button class="btn btn-outline-light">Вийти</button>
+              </form>
+            </li>
+          </ul>
         <% } else { %> 
-        <!-- ======================================================================= -->
           <a class="align-self-lg-center text-white px-lg-4 py-2" href="/login">УВІЙТИ</a>
         <% } %> 
       </div>
+      <!-- ======================================================================= -->
     </div>
   </div>
 </nav>
-<%-include('./flash')%>
+<div id="flash" class="col-lg-6 offset-lg-3 text-center mt-1"><%-include('./flash')%></div>
 
 
-<div class="modal fade" id="callBackModal" tabindex="-1" aria-labelledby="callBackModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h5 class="modal-title" id="callBackModalLabel">Замовити дзвінок</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form action="/contacts/callback" method="POST">
-          <label for="nav-callBackPhone" class="form-label">Введуть ваш номер і ми вам перетелефонуємо</label>
-          <div class="d-flex mb-2">
-            <input type="tel" id="nav-callBackPhone" class="form-control" name="callBackPhone" placeholder="+38(000)000-00-00" maxlength="17">
-            <button type="submit" class="btn btn-light btn-outline-success ms-1">Замовити</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
