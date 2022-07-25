@@ -1,7 +1,7 @@
 <% layout('/layouts/boilerplate') %> 
-<div class="row after-nav">
-    <h1>Створити нову акцію</h1>
-    <div class="col-8 offset-2">
+<div class="row mt-3">
+    <h3 class="text-center">Створення нової акції</h3>
+    <div class="col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-xl-4 offset-xl-4 ">
         <form action="/actions" method="POST" novalidate class="validated-form needs-validation" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="title" class="form-label">Назва</label>
@@ -25,7 +25,7 @@
                 <label for="finishDate" class="form-label">Діє до</label>
                 <input type="date" class="form-control" id="finishDate" name="finishDate">     
             </div> 
-            <div class="mb-3">
+            <div class="mb-3 text-center">
                 <a href="/actions" class="btn btn-primary">Відмінити</a>
                 <button type="submit" class="btn btn-primary">Зберегти</button>
             </div>            

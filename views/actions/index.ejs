@@ -1,16 +1,11 @@
 <% layout('/layouts/boilerplate') %> 
-<div class="row after-nav">
-    <div class="col-9">
-        <h1>Акції</h1>
-    </div>
-    <div class="col-3 d-flex align-items-center justify-content-end">
-        <a href="/actions/new" class="btn btn-success">Додати акцію</a>
-    </div>
+<div class="d-flex mx-1 mb-1">
+        <h1 class="mx-auto align-self-center mb-0">Акції</h1>
+        <a href="/actions/new" class="btn btn-success align-self-center">Додати акцію</a>
 </div>
-<%-include('../partials/flash')%>
-<div class="row">
+<div class="row px-3">
     <% for(let action of actions) { %>
-        <div class="card mb-3">
+        <div class="card mb-3 px-0 text-break">
             <div class="row g-0">
                 <div class="col-md-5">
                     <% if (action.image){ %> 
@@ -19,30 +14,30 @@
                 </div>
                 <div class="col-md-7">
                     <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <h5 class="card-title"><%=action.title%></h5>
-                            <div>
-                                <a href="/actions/<%=action._id%>/edit" class="btn">Редагувати</a>
+                        <div class="w-100">
+                            <h5 class="card-title "><%=action.title%></h5>
+                            <div class="text-center my-3">
+                                <a href="/actions/<%=action._id%>/edit" class="btn btn-primary">Редагувати</a>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmDelete">Видалити</button>
                             </div>
-                            <div class="modal fade" id="confirmDelete" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content text-center">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="modalLabel">Видалити акцію</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <strong>Ви впевнені, що хочете видалити акцію "<%=action.title%>"?</strong><br>
-                                        Відновити акцію після видалення буде неможливо!
-                                    </div>
-                                    <div class="modal-footer">
-                                        <form action="/actions/<%=action._id%>?_method=DELETE"  method="POST" class="mx-auto">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Відмінити</button>
-                                            <button type="submit" class="btn btn-danger">Видалити</button>
-                                        </form>
-                                    </div>
-                                    </div>
+                        </div>
+                        <div class="modal fade" id="confirmDelete" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content text-center">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalLabel">Видалити акцію</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <strong>Ви впевнені, що хочете видалити акцію "<%=action.title%>"?</strong><br>
+                                    Відновити акцію після видалення буде неможливо!
+                                </div>
+                                <div class="modal-footer">
+                                    <form action="/actions/<%=action._id%>?_method=DELETE"  method="POST" class="mx-auto">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Відмінити</button>
+                                        <button type="submit" class="btn btn-danger">Видалити</button>
+                                    </form>
+                                </div>
                                 </div>
                             </div>
                         </div>
