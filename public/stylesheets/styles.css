@@ -1,16 +1,16 @@
 /* =====================NavBar===================== */
 .nav-bg {
 	background-color: rgba(0, 0, 0, 0.6) !important;
-	transition: 1s;
+	transition: background 1s;
 }
 #navbar {
 	background-color: rgb(31, 31, 31);
-	transition: 1s;
+	transition: background 1s;
 }
 #navbar .nav-link {
 	color: white;
 	border-bottom: 0.1rem solid transparent;
-	transition: 0.5s;
+	transition: border 0.5s;
 }
 #navbar .nav-link:hover {
 	border-bottom-color: white;
@@ -90,7 +90,7 @@
 	border-radius: 0;
 	background-color: rgba(0, 0, 0, 1);
 	overflow: hidden;
-	animation: transform-top 1s;
+	animation: transform-top 0.5s;
 }
 #nav-user > ul a {
 	color: white;
@@ -189,15 +189,23 @@
 	}
 }
 /* =====================Body===================== */
+body{
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+
+}
 footer {
+	
 	height: 2.5rem;
+	margin-top: auto;
 }
 .footer {
 	height: 2.5rem;
 }
-main {
+/* main {
 	min-height: calc(100vh - 5rem - 2.5rem);
-}
+} */
 #flash {
 	opacity: 0.8;
 }
@@ -216,4 +224,63 @@ main {
 }
 .contacts li {
 	list-style-type: none;
+}
+
+/* =====================User Orders Page===================== */
+.modal-user-order .modal-body > button{
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	z-index: 2;
+}
+
+#userOrders {
+	word-wrap: break-word
+}
+#userOrders .carousel-caption {
+	left: 0;
+	right: 0;
+	bottom: 0rem;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+}
+#userOrders .carousel-caption button{
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+#userOrders .more-caption{
+	position: absolute;
+	bottom: 0rem;
+	left: 0rem;
+	width: 100%;
+	text-align: center;
+	transition: 0.3s;
+	opacity: 0;
+	color: white
+}
+#userOrders .carousel-item:hover .more-caption {
+	background-color: rgba(255, 255, 255, .5);
+	opacity: 1;
+}
+
+/* =====================Order Status Edit===================== */
+#statusDeletePhotos > div {
+	position: relative;
+}
+#statusDeletePhotos .form-check{
+	position: absolute;
+	top: 10px;
+	right: 5px;
+}
+#statusDeletePhotos input {
+	height: 25px;
+	width: 25px;
+	opacity: 0.7;
+	transition: 0.2s;
+}
+#statusDeletePhotos input:hover {
+	opacity: 1;
 }

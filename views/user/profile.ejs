@@ -1,46 +1,50 @@
 <% layout('/layouts/boilerplate') %> 
-<div class="row after-nav">
-    <%-include('../partials/flash')%>
-    <h1>Профіль - <%= user.username %></h1>
-        <div class="col-6 offset-3">
+
+<h3 class="mt-3 text-center">Редагування профілю - <%= user.username %></h3>
+<div class="row">
+    <div class="col-lg-6 offset-lg-3 col-sm-8 offset-sm-2 col-10 offset-1">
         <form action="/profile?_method=PUT" method="POST" class="needs-validation register-validation" novalidate>
-            <div class="mb-3">
-                <label for="username" class="form-label">Нікнейм</label>
-                <input type="text" class="form-control" id="username" name="username" value="<%= user.username %>" autocomplete="username" disabled required>
+            <div class="row mb-3">
+                <div class="mb-3 col-md-6">
+                    <label for="username" class="form-label">Нікнейм</label>
+                    <input type="text" class="form-control" id="username" name="username" value="<%= user.username %>" autocomplete="username" disabled required>
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" value="<%= user.email %>" autocomplete="email" disabled required>
+                </div>
             </div>
-            <button class="btn btn-primary mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#change-pass" aria-expanded="false" aria-controls="change-pass">
+            <div class="text-center">
+                <button class="btn btn-primary mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#change-pass" aria-expanded="false" aria-controls="change-pass">
                 Змінити пароль
             </button>
-            <div class="collapse row mb-3" id="change-pass">
-                <div class="col-md-6">
+            </div>
+            <div class="collapse row" id="change-pass">
+                <div class="col-md-6 mb-3">
                     <label for="password" class="form-label">Новий пароль</label>
                     <input type="password" class="form-control" id="password" name="password" autocomplete="new-password" required>
                     <div class="invalid-feedback"></div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 mb-3">
                     <label for="password2" class="form-label">Повторіть новий пароль</label>
                     <input type="password" class="form-control" id="password2" autocomplete="new-password" required>
                     <div class="invalid-feedback"></div>
                 </div>
             </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" value="<%= user.email %>" autocomplete="email" disabled required>
-            </div>
-            <div class="row mb-3">
-                <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6 mb-3">
                     <label for="f_name" class="form-label">Ім'я</label>
                     <input type="text" class="form-control" id="f_name" name="f_name" value="<%= user.f_name %>" autocomplete="given-name" >
                     <div class="invalid-feedback"></div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 mb-3">
                     <label for="l_name" class="form-label">Прізвище</label>
                     <input type="text" class="form-control" id="l_name" name="l_name" value="<%= user.l_name %>" autocomplete="family-name" >
                     <div class="invalid-feedback"></div>
                 </div>
             </div>
-            <div class="row mb-3">
-                <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6 mb-3">
                     <label for="birthday" class="form-label">Дата народження</label>
                     <div class="input-group" id="birthday">
                         <input type="number" id="day" aria-label="Day" class="form-control" placeholder="День" name="birthday[day]" value="<%=user.birthday.day%>">
@@ -49,7 +53,7 @@
                     </div>
                     <div class="invalid-feedback"></div>
                 </div>
-                <div class="col-md-6">                    
+                <div class="col-md-6 mb-3">                    
                     <label for="sex" class="form-label">Стать</label>
                     <select class="form-select" id="sex" name="sex" value="<%= user.sex %>">
                         <% if (user.sex == "n/d") { %> 
@@ -76,29 +80,29 @@
                 <input type="tel" class="form-control" id="phone" name="phone" placeholder="+38(000)000-00-00" maxlength="17" value="<%= user.phone %>" autocomplete="tel">
                 <div class="invalid-feedback"></div>
             </div>
-            <div class="row mb-3">
-                <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-4 mb-3">
                     <label for="city" class="form-label">Місто</label>
                     <input type="text" class="form-control" id="city" name="adress[city]" value="<%= user.adress.city %>" >
                     <div class="invalid-feedback"></div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 mb-3">
                     <label for="street" class="form-label">Вулиця</label>
                     <input type="text" class="form-control" id="street" name="adress[street]" value="<%= user.adress.street %>">
                     <div class="invalid-feedback"></div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 mb-3">
                     <label for="house" class="form-label">Будинок</label>
                     <input type="text" class="form-control" id="house" name="adress[house]" value="<%= user.adress.house %>">
                     <div class="invalid-feedback"></div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 mb-3">
                     <label for="apt" class="form-label">Квартира</label>
                     <input type="text" class="form-control" id="apt" name="adress[apt]" value="<%= user.adress.apt %>">
                     <div class="invalid-feedback"></div>
                 </div>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 text-center">
                 <button type="submit" class="btn btn-primary">Оновити данні профілю</button>
             </div>
         </form>

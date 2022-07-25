@@ -65,7 +65,7 @@ module.exports.updateStatus = async (req, res) => {
 		}
 		await status.updateOne({ $pull: { images: { name: { $in: req.body.deleteImages } } } });
 	}
-	req.flash('success', `Продукт успішно оновлено!`);
+	req.flash('success', `Статус успішно оновлено!`);
 	res.redirect(`/orders/${id}`);
 };
 

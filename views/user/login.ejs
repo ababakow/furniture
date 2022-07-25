@@ -1,9 +1,8 @@
 <% layout('/layouts/boilerplate') %> 
 
-<div class="row after-nav">
-    <h1>Авторизація</h1>
-    <%-include('../partials/flash')%>
-    <div class="col-6 offset-3">
+<div class="row">
+    <h3 class="text-center mt-3">Авторизація</h3>
+    <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-6 offset-sm-3 col-10 offset-1 mt-3">
         <form action="/login" method="POST" class="needs-validation" novalidate>
             <div class="mb-3">
                 <label for="username" class="form-label">Нікнейм або email</label>
@@ -19,12 +18,15 @@
                     Це поле має бути заповнене.
                 </div>
             </div>
-            <div class="mb-3">
-                <button type="submit" class="btn btn-primary">Увійти</button>
+            <div class="mb-3 text-center">
+                <button type="submit" class="btn btn-primary px-5">Увійти</button>
             </div>
         </form>
-        <h4>Не маєш аккаунта?</h4>
-        <a href="/registration" class="btn btn-success">Зареєструватися</a>
+        <div class="text-center mt-4 pt-4 border-top">
+            <h6>Не маєш аккаунта?</h6>
+            <a href="/registration" class="btn btn-success">Зареєструватися</a>
+        </div>
     </div>
 </div>
+
 <script src="/javascripts/validateForms.js"></script>

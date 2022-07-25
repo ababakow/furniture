@@ -1,49 +1,49 @@
 <% layout('/layouts/boilerplate') %> 
-<div class="row after-nav">
-    <h1>Реєстрація на сайті</h1>
-    <%-include('../partials/flash')%>
-    <h6>Що дає реєстрація?</h6>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non quia hic natus repellendus Fugit?</p>
-    <div class="col-6 offset-3">
+<div class="row mt-3">
+    <h3 class="text-center">Реєстрація на сайті</h3>
+    <div class="col-lg-6 offset-lg-3 col-sm-8 offset-sm-2 col-10 offset-1">
         <form action="/registration" method="POST" class="needs-validation register-validation" novalidate>
-            <div class="mb-3">
-                <label for="username" class="form-label">Нікнейм</label>
-                <input type="text" class="form-control" id="username" name="username" required>
-                <div class="invalid-feedback"></div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="username" class="form-label">Нікнейм<span class="text-danger"><strong>*</strong></span></label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="email" class="form-label">Email<span class="text-danger"><strong>*</strong></span></label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                    <div class="invalid-feedback"></div>
+                </div>
             </div>
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label for="password" class="form-label">Пароль</label>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="password" class="form-label">Пароль<span class="text-danger"><strong>*</strong></span></label>
                     <input type="password" class="form-control" id="password" name="password" autocomplete required>
                     <div class="invalid-feedback"></div>
                 </div>
-                <div class="col-md-6">
-                    <label for="password2" class="form-label">Повторіть пароль</label>
+                <div class="col-md-6 mb-3">
+                    <label for="password2" class="form-label">Повторіть пароль<span class="text-danger"><strong>*</strong></span></label>
                     <input type="password" class="form-control" id="password2" autocomplete required>
                     <div class="invalid-feedback"></div>
                 </div>
             </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" required>
-                <div class="invalid-feedback"></div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-md-6">
+            
+            <div class="row">
+                <div class="col-md-6 mb-3">
                     <label for="f_name" class="form-label">Ім'я</label>
                     <input type="text" class="form-control" id="f_name" name="f_name">
                     <div class="invalid-feedback"></div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 mb-3">
                     <label for="l_name" class="form-label">Прізвище</label>
                     <input type="text" class="form-control" id="l_name" name="l_name">
                     <div class="invalid-feedback"></div>
                 </div>
             </div>
-            <div class="row mb-3">
-                <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6 mb-3">
                     <label for="birthday" class="form-label">Дата народження</label>
-                    <div class="input-group id="birthday">
+                    <div class="input-group" id="birthday">
                         <input type="number" id="day" aria-label="Day" class="form-control" placeholder="День" name="birthday[day]">
                         <input type="number" id="month" aria-label="Month" class="form-control" placeholder="Місяць" name="birthday[month]">
                         <input type="number" id="year" aria-label="Year" class="form-control" placeholder="Рік" name="birthday[year]">
@@ -51,7 +51,7 @@
                     <!-- <input type="date" class="form-control" id="birthday" name="birthday"> -->
                     <div class="invalid-feedback"></div>
                 </div>
-                <div class="col-md-6">                    
+                <div class="col-md-6 mb-3">                    
                     <label for="sex" class="form-label">Стать</label>
                     <select class="form-select" id="sex" name="sex">
                         <option value="n/d">Не вказано</option>
@@ -66,29 +66,30 @@
                 <input type="tel" class="form-control" id="phone" name="phone" placeholder="+38(000)000-00-00" maxlength="17">
                 <div class="invalid-feedback"></div>
             </div>
-            <div class="row mb-3">
-                <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-4 mb-3">
                     <label for="city" class="form-label">Місто</label>
                     <input type="text" class="form-control" id="city" name="adress[city]">
                     <div class="invalid-feedback"></div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 mb-3">
                     <label for="street" class="form-label">Вулиця</label>
                     <input type="text" class="form-control" id="street" name="adress[street]">
                     <div class="invalid-feedback"></div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 mb-3">
                     <label for="house" class="form-label">Будинок</label>
                     <input type="text" class="form-control" id="house" name="adress[house]">
                     <div class="invalid-feedback"></div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 mb-3">
                     <label for="apt" class="form-label">Квартира</label>
                     <input type="text" class="form-control" id="apt" name="adress[apt]">
                     <div class="invalid-feedback"></div>
                 </div>
             </div>
-            <div class="mb-3">
+            <p><span class="text-danger"><strong>*</strong></span><em><small>Поля обов'язкові для заповлення</small></em></p>
+            <div class="text-center">
                 <button type="submit" class="btn btn-primary">Підтвердити реєстрацію</button>
             </div>
         </form>

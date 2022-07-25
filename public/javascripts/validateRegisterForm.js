@@ -133,10 +133,13 @@ const setValid = (input, status) => {
 	const house = document.querySelector('#house');
 	const apt = document.querySelector('#apt');
 	const birthday = document.querySelector('#birthday');
+	// console.log(birthday)
 
 	formatPhone(phone);
 
 	form.addEventListener('submit', (e) => {
+		// e.preventDefault()
+		
 		validate(validationUsername, username);
 		validate(validationPassword, password);
 		validate(validationEmail, email);
@@ -153,7 +156,8 @@ const setValid = (input, status) => {
 		passwordRepeat.addEventListener('input', (e) => {
 			validationPasswordRepeat(passwordRepeat, password.value);
 		});
-
+		
 		if (document.querySelector('.is-invalid')) e.preventDefault();
 	});
+	
 })();
