@@ -1,29 +1,55 @@
 <% layout('/layouts/boilerplate') %> 
-<div class="row after-nav">
-    <div class="col-9">
-        <h1><%= category %></h1>
-    </div>
-    <div class="col-3 d-flex align-items-center justify-content-end">
-        <a href="/catalog/new" class="btn btn-success">Додати продукт</a>
-    </div>
-</div>
-<div class="row">
-    <%-include('../partials/flash')%>
-    <% for(let product of products) { %>
-        <div class="card" style="width: 18rem;">
-            <% if(product.images.length){ %> 
-                <img src="<%=product.images[0].urlMd%>" class="card-img-top" alt="...">
-            <% } else { %> 
-                <img src="/imgs/navbar/logo.svg" style="background-color: blue;" class="card-img-top" alt="...">
-            <% } %> 
-            <div class="card-body">
-                <h5 class="card-title"><%=product.title%></h5>
-                <p class="card-text"><%=product.description%></p>
-                <a href="/catalog?category=<%=product.category%>"><%=product.categoryToUa()%></a>
-                <br>
-                <a href="/catalog/<%=product.id%>" class="btn btn-primary">Докладніше</a>
-            </div>
-        </div>
-    <% } %> 
-    <div class="after-nav"></div>
-</div>
+
+<header id="cataloHeader" class="d-block mt-3 mb-1">
+    <h1 class="mb-0 text-center"><%= category %></h1>
+    <a href="/catalog/new" class="btn btn-success align-self-center add-new">Додати продукт</a>
+    <nav>
+        <ul class="nav justify-content-center mt-3">
+            <li class="nav-item">
+                <a class="btn btn-outline-primary btn-sm" href="/catalog">ВСІ РОБОТИ</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-outline-primary btn-sm" href="/catalog?category=kitchens">КУХНІ</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-outline-primary btn-sm" href="/catalog?category=wardrobes">ШАФИ</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-outline-primary btn-sm" href="/catalog?category=living">ВІТАЛЬНІ</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-outline-primary btn-sm" href="/catalog?category=chests">КОМОДИ</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-outline-primary btn-sm" href="/catalog?category=hallways">ПЕРЕДПОКІЙ</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-outline-primary btn-sm" href="/catalog?category=glass">ВИРОБИ ЗІ СКЛА</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<section id="catalog" class="row justify-content-center m-0 p-0" >
+    <ul class="d-inline-flex flex-wrap p-0 m-0 col-12 col-md-10 offset-md-1">
+        <% for(let product of products) { %>
+            <li class="p-1">
+                <div class="card">
+                    <% if(product.images.length){ %> 
+                        <img src="<%=product.images[0].urlMd%>" class="card-img-top" alt="...">
+                    <% } else { %> 
+                        <img src="/imgs/navbar/logo.svg" style="background-color: blue;" class="card-img-top" alt="...">
+                    <% } %> 
+                    <div class="card-body">
+                        <h5 class="card-title overflow-wrap"><%=product.title%></h5>
+                        <!-- <p><i><%=product.categoryToUa()%></i></p> -->
+                        <p class="card-text mt-3 mb-0"><%=product.description%></p>
+                        <a href="/catalog/<%=product.id%>" class="go-to-product">Докладніше</a>
+                    </div>
+                </div>
+            </li>
+        <% } %>
+        </ul> 
+</section>
+
+
+

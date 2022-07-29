@@ -1,25 +1,48 @@
 <% layout('/layouts/boilerplate') %> 
-<div class="row after-nav mb-5">
-    <%-include('../partials/flash')%>
-    <div class="col-6 offset-3">
-        <h5><%=product.title%></h5>
-        <div class="card" >
-            <div class="d-flex">
-                <% for (let img of product.images){ %> 
-                    <img src="<%=img.urlHd%>" class="card-img-top" style="width:18rem">
-                <% } %> 
-            </div>
-            <div class="card-body">
-                <p class="card-text"><%=product.description%></p>
-                <a href="/catalog?category=<%=product.category%>"><%=product.categoryToUa()%></a>
-                <br>
-                <br>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmDelete">Видалити</button>
-                <a href="/catalog/<%=product.id%>/edit" class="btn btn-primary">Редагувати</a>
-            </div>
+<div class="row my-3 mx-1">
+    <article id="catalogShow" class="card px-0 overflow-hidden col-lg-10 offset-lg-1 col-xl-8 offset-xl-2 col-xxl-6 offset-xxl-3">
+      <div class="b-block">
+        <div class="px-3 py-2 text-center">
+          <h5 class="card-title m-0"><%=product.title%></h5>
         </div>
-    </div>
-</div>
+        <div>
+          <div id="showCatalogPhotos" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <% product.images.forEach((img, i) => { %> 
+                <% if (i===0){ %> 
+                  <div class="carousel-item active">
+                    <img src="<%=img.urlHd%>" class="d-block w-100" alt="...">
+                  </div>
+                <% } else { %> 
+                  <div class="carousel-item">
+                    <img src="<%=img.urlHd%>" class="d-block w-100" alt="...">
+                  </div>
+                <% } %> 
+              <% }) %> 
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#showCatalogPhotos" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#showCatalogPhotos" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+        <div class="px-3  text-break d-flex flex-column justify-content-between">
+          <p class="mt-2">Категорія: <a href="/catalog?category=<%=product.category%>"><%=product.categoryToUa()%></a></p>
+          <div>
+            <button type="button" class="btn btn-primary mb-1" data-bs-toggle="modal" data-bs-target="#confirmDelete">Видалити</button>
+            <a href="/catalog/<%=product.id%>/edit" class="btn btn-primary mb-1">Редагувати</a>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+          <p class="card-text"><%=product.description%></p>
+      </div>
+    </article>
+  </div>
 
 <div class="modal fade" id="confirmDelete" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -28,7 +51,7 @@
         <h5 class="modal-title" id="modalLabel">Видалити позицію з портфоліо</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body text-break">
         <strong>Ви впевнені, що хочете видалити "<%=product.title%>"?</strong><br>
         Відновити позицію після видалення буде неможливо!
       </div>

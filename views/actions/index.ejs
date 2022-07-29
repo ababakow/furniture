@@ -1,11 +1,11 @@
 <% layout('/layouts/boilerplate') %> 
-<div class="d-flex mx-1 mb-1">
-        <h1 class="mx-auto align-self-center mb-0">Акції</h1>
-        <a href="/actions/new" class="btn btn-success align-self-center">Додати акцію</a>
-</div>
-<div class="row px-3">
+<header class="d-block mx-1 my-3">
+        <h1 class="text-center mb-0">Акції</h1>
+        <a href="/actions/new" class="btn btn-success add-new">Додати акцію</a>
+</header>
+<section class="row px-3">
     <% for(let action of actions) { %>
-        <div class="card mb-3 px-0 text-break">
+        <article class="card mb-3 px-0 text-break">
             <div class="row g-0">
                 <div class="col-md-5">
                     <% if (action.image){ %> 
@@ -54,7 +54,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </article>
     <% } %> 
-    <div class="after-nav"></div>
-</div>
+</section>

@@ -28,7 +28,7 @@
 	border-radius: 0;
 	padding: 0;
 	overflow: hidden;
-	animation: transform-top 1s;
+	animation: transform-top 0.5s;
 }
 
 /* -----Nav Catalog Item ----- */
@@ -138,7 +138,7 @@
 	z-index: 0;
 	padding-top: 2rem;
 	background-color: rgb(29, 24, 24);
-	transition: 0.7s;
+	transition: 0.4s;
 	height: 2rem;
 	overflow: hidden;
 	opacity: 0;
@@ -177,11 +177,13 @@
 	border-radius: 50%;
 	border: 1px solid rgba(173, 173, 173, 1);
 	background-color: rgb(235, 235, 235);
+	opacity: 0.5;
 	transition: 00.5s;
 }
 #goToUp:hover{
 	border: 1px solid rgb(0, 0, 0);
 	background-color: rgb(255, 255, 255);
+	opacity: 1;
 }
 @media (max-width: 800px) {
 	#goToUp {
@@ -203,20 +205,9 @@ footer {
 .footer {
 	height: 2.5rem;
 }
-/* main {
-	min-height: calc(100vh - 5rem - 2.5rem);
-} */
 #flash {
 	opacity: 0.8;
 }
-/* HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH */
-
-.after-nav {
-	margin-top: 5rem;
-}
-
-
-
 /* =====================Contacts Page===================== */
 .contacts {
 	margin-left: 0;
@@ -266,23 +257,93 @@ footer {
 	opacity: 1;
 }
 
-/* =====================Order Status Edit===================== */
-#statusDeletePhotos > div {
+/* =====================Catalog Index===================== */
+#cataloHeader li{
+	margin-bottom: 0.2em;
+}
+#cataloHeader nav a{
+	width: 10em;
+	border-radius: 0;
+	margin-left: 1px;
+	margin-right: 1px;
+}
+#catalog li{
+	list-style-type: none;
+	position: relative;
+	top:0;
+	transition: all 0.1s;
+	width: 25%;
+}
+@media (max-width: 1400px) {
+	#catalog li{
+		width: calc(100%/3);
+	}
+}
+@media (max-width: 992px) {
+	#catalog li{
+		width: 50%;
+	}
+}
+@media (max-width: 576px) {
+	#catalog li{
+		width: 100%;
+	}
+}
+#catalog li:hover{
+	top: -3px;
+}
+#catalog .card{
+	transition: all 0.3s;
+}
+#catalog .card:hover{
+	border: 1px solid rgb(102, 102, 102);
+	box-shadow: 2px 5px 5px rgb(170, 170, 170);
+}
+#catalog h5{
+	height: 2.5em;
+	overflow: hidden;
+}
+#catalog .card-text{
+	height: 6em;
+	overflow: hidden;
+}
+
+#catalog a{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}
+
+/* =====================Catalog Edit===================== */
+
+
+/* =====================CROSS PAGES===================== */
+.add-new{
+	position: absolute;
+	right: 10px;
+	top: 6rem;
+}
+.after-nav {
+	margin-top: 5rem;
+}
+/* ------------------- DeletePhotos-------------------- */
+#deletePhotos > div {
 	position: relative;
 }
-#statusDeletePhotos .form-check{
+#deletePhotos .form-check{
 	position: absolute;
 	top: 10px;
 	right: 5px;
 }
-#statusDeletePhotos input {
+#deletePhotos input {
 	height: 25px;
 	width: 25px;
 	opacity: 0.7;
 	transition: 0.2s;
 }
-#statusDeletePhotos input:hover {
+#deletePhotos input:hover {
 	opacity: 1;
 }
-
-/* =====================Actions Index===================== */

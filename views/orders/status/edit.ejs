@@ -1,7 +1,7 @@
 <% layout('/layouts/boilerplate') %> 
 <div class="row">
     <h1 class="text-center mb-3">Оновлення статусу для замовлення <%=order.order_id%></h1>
-    <div class="col-sm-8 offset-sm-2 col-xxl-6 offset-xxl-3">
+    <div class="col-sm-8 offset-sm-2 col-xxl-6 offset-xxl-3 px-3 px-sm-0">
         <form action="/orders/<%=order._id%>/status/<%=status._id%>?_method=PUT" method="POST" novalidate class="validated-form needs-validation" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-lg-6">
@@ -32,7 +32,7 @@
                 <input type="file" class="form-control" id="images" name="images" multiple>
             </div>
             <p class="text-center mb-1">Видалити фото:</p>
-            <div id="statusDeletePhotos" class="d-flex flex-wrap mb-3 border">
+            <div id="deletePhotos" class="d-flex flex-wrap mb-3 border">
                 <% status.images.forEach(function(img,i){ %>
                     <div class="col-lg-6">
                         <img src="<%=img.urlHd%>" class="img-thumbnail">
