@@ -31,6 +31,24 @@
         <div class="px-3 text-break">
           <p class="mt-2">Категорія: <a href="/catalog?category=<%=product.category%>"><%=product.categoryToUa()%></a></p>
           <div>
+            <button class="btn btn-light btn-outline-success" type="button" data-bs-toggle="collapse" data-bs-target="#howToOrder" aria-expanded="false" aria-controls="howToOrder">
+              Замовити
+            </button>
+            <div class="collapse border-top border-bottom py-2 mt-2" id="howToOrder">
+              <p class="mb-4 mt-4 text-center">Зв'яжіться з нами будь-яким зручним для вас способом - <strong><a href="/contacts">КОНТАКТИ</a></strong> і ми детально обговоримо, як будуть виглядати меблі вашої мрії та домовимось про наступні кроки ;)</p>
+              <h5 class="mb-1">Етапи виконання меблів на замовлення:</h5>
+              <ol>
+                <li>Зв'яжіться з нами будь-яким зручним для вас способом - <strong><a href="/contacts">КОНТАКТИ</a></strong>. Наш спеціаліст вислухає ваші побажання, при необхідності, надасть рекомендації та попередньо зорієнтує у вартості.
+                <li>Наш спеціаліст приїде до вас для виконання замірів та для обговорення матеріалів і кольору - безкоштовно.</li>
+                <li>Виконуємо технічни прорахунок, формуємо вартість та погоджуємо з вами.</li>
+                <li>Виробництво.</li>
+                <li>Доставка та монтаж.</li>
+              </ol>
+              <h5 class="mb-1">Доставка</h5>
+              <p>Організацію доставки наша компанія повністю бере на себе.</p>
+            </div>
+          </div>
+          <div class="mt-2">
             <button type="button" class="btn btn-primary mb-1" data-bs-toggle="modal" data-bs-target="#confirmDelete">Видалити</button>
             <a href="/catalog/<%=product.id%>/edit" class="btn btn-primary mb-1">Редагувати</a>
           </div>

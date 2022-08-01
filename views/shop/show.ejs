@@ -29,17 +29,22 @@
         </button>
       </div>
       <div class="px-3 text-break">
-        <div class="d-flex mt-3">
+        <div class="d-flex flex-wrap align-items-center mt-3 mb-2">
           <div class="me-5">
             <p class="m-0">Ціна: <%=item.price%> грн.</p>
           </div>
-          <div>
+          <div class="">
             <% if (item.inStock){ %>  
               <p class="m-0" style="color: rgb(97, 167, 95);"><span><img src="/imgs/shop/page/check.svg" alt=""></span>В наявності</p>
             <% } else { %> 
               <p class="m-0" style="color: rgb(201, 32, 32);"><span><img src="/imgs/shop/page/dot.svg" alt=""></span> Тимчасово відсутній</p>
             <% } %> 
           </div>
+        </div>
+        <div class="mb-2">
+          <button class="btn btn-light btn-outline-success" type="button">
+            Додати до коишика
+          </button>
         </div>
         <div class="mt-3">
           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmDelete">Видалити</button>
