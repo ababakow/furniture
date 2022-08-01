@@ -1,7 +1,7 @@
 <% layout('/layouts/boilerplate') %> 
-<div class="row after-nav">
-    <h1>Дадати новий продукт до магазину</h1>
-    <div class="col-8 offset-2">
+<section class="row mt-3">
+    <h3 class="text-center">Дадати новий продукт до магазину</h3>
+    <div class="col-sm-8 offset-sm-2 col-xl-6 offset-xl-3 col-xxl-4 offset-xxl-4 px-3 px-sm-0">
         <form action="/shop" method="POST" novalidate class="validated-form needs-validation" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="title" class="form-label">Назва</label>
@@ -42,11 +42,12 @@
                 <label for="images" class="form-label">Фото</label>
                 <input type="file" class="form-control" id="images" name="images" multiple>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 text-center">
+                <a href="/shop" class="btn btn-primary">Відмінити</a>
                 <button type="submit" class="btn btn-primary">Зберегти</button>
             </div>
             
         </form>
     </div>
-</div>
+</section>
 <script src="/javascripts/validateForms.js"></script>

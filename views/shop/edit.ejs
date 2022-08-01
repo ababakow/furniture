@@ -1,7 +1,7 @@
 <% layout('/layouts/boilerplate') %> 
-<div class="row after-nav">
-    <h1>Редагувати продукт</h1>
-    <div class="col-8 offset-2">
+<section class="row my-3">
+    <h3 class="text-center">Редагувати продукт</h3>
+    <div class="col-sm-8 offset-sm-2 col-xxl-6 offset-xxl-3 px-3 px-sm-0">
         <form action="/shop/<%=item.id%>?_method=PUT" method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="title" class="form-label">Назва</label>
@@ -42,21 +42,23 @@
                 <label for="images" class="form-label">Фото</label>
                 <input type="file" class="form-control" id="images" name="images" multiple>
             </div>
+            <p class="text-center mb-1">Видалити фото:</p>
+            <div id="deletePhotos" class="d-flex flex-wrap mb-3 border">
+                <% item.images.forEach(function(img,i){ %>
+                    <div class="col-lg-6">
+                        <img src="<%=img.urlHd%>" class="img-thumbnail">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="img-<%=i%>"
+                                name="deleteImages[]" value="<%=img.name%>">                            
+                        </div>
+                    </div>
+                <% }) %> 
+            </div> 
             <div class="mb-3">
                 <a href="/shop/<%=item.id%>" class="btn btn-primary">Назад</a>
                 <button type="submit" class="btn btn-primary">Зберегти</button>
-            </div>   
-            <div class="mb-3">
-                <% item.images.forEach(function(img,i){ %>
-                    <img src="<%=img.urlHd%>" class="img-thumbnail">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="img-<%=i%>"
-                            name="deleteImages[]" value="<%=img.name%>">
-                        <label class="form-check-label" for="img-<%=i%>">Delete?</label>
-                    </div>
-                <% }) %> 
-            </div>         
+            </div>        
         </form>
     </div>
-</div>
+</section>
 <script src="/javascripts/validateForms.js"></script>

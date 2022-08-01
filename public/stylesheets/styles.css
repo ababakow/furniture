@@ -317,8 +317,55 @@ footer {
 	opacity: 0;
 }
 
-/* =====================Catalog Edit===================== */
-
+/* =====================Shop Index===================== */
+#shop li{
+	list-style-type: none;
+	position: relative;
+	top:0;
+	transition: all 0.1s;
+	width: 25%;
+}
+@media (max-width: 1400px) {
+	#shop li{
+		width: calc(100%/3);
+	}
+}
+@media (max-width: 992px) {
+	#shop li{
+		width: 50%;
+	}
+}
+@media (max-width: 576px) {
+	#shop li{
+		width: 100%;
+	}
+}
+#shop li:hover{
+	top: -3px;
+}
+#shop .card{
+	transition: all 0.3s;
+}
+#shop .card:hover{
+	border: 1px solid rgb(102, 102, 102);
+	box-shadow: 2px 5px 5px rgb(170, 170, 170);
+}
+#shop h5{
+	height: 2.5em;
+	overflow: hidden;
+}
+#shop .card-text{
+	height: 6em;
+	overflow: hidden;
+}
+#shop a{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}
 
 /* =====================CROSS PAGES===================== */
 .add-new{
@@ -347,3 +394,5 @@ footer {
 #deletePhotos input:hover {
 	opacity: 1;
 }
+/* ------------------- Index Page - Card-------------------- */
+
