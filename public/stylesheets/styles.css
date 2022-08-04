@@ -30,6 +30,19 @@
 	overflow: hidden;
 	animation: transform-top 0.5s;
 }
+.nav-lg{
+	background-color: black;
+	height: 0;
+	opacity: 0;
+	width: 100%;
+}
+@media(max-width: 992px){
+	.nav-lg{
+		background-color: black;
+		height: 4.5rem;
+		opacity: 1;
+	}
+}
 
 /* -----Nav Catalog Item ----- */
 .nav-catalog-item {
@@ -168,6 +181,7 @@
 }
 /* -----Go To Up Button-----*/
 #goToUp {
+	z-index: 1;
 	display: none;
 	position: fixed;
 	bottom: 3%;
@@ -208,6 +222,204 @@ footer {
 #flash {
 	opacity: 0.8;
 }
+
+/* =====================Home Page===================== */
+#homePage .interruption{
+	margin-top: 10vw;
+	margin-bottom: 10vw;
+	margin-left: auto;
+	margin-right: auto;
+	border-top: 2px solid black;
+	width: 20%;
+}
+/* -----section main carusel------ */
+/* #homePage .carousel figure{
+	background-color: black;
+	margin-bottom: 0;
+}
+#homePage .carousel img{
+	opacity: 0.6;
+}
+#homePage .carousel figcaption{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 70%;
+	height: 100%;
+	color: white;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding-left: 5%;
+}
+#homePage .carousel figure h2{
+	text-transform: uppercase;
+	font-size: 3vw;
+}
+#homePage .carousel figure p{
+	font-size: 2.3vw;
+	margin-bottom: 1em;
+}
+#homePage .carousel figure a{
+	font-size: 2vw;
+	text-decoration: none;
+	text-transform: uppercase;
+	color: white;
+	border: 1px solid white;
+	padding: 0.2em 1em;
+	border-radius: 1rem;
+	transition: 100ms;
+	margin-right: auto;
+}
+#homePage .carousel figure a:hover{
+	background-color: white;
+	color: black;
+} */
+#carouselMain figure{
+	background-color: black;
+	margin-bottom: 0;
+}
+#carouselMain img{
+	opacity: 0.6;
+}
+#carouselMain figcaption{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 70%;
+	height: 100%;
+	color: white;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding-left: 5%;
+}
+#carouselMain figure h2{
+	text-transform: uppercase;
+	font-size: 3vw;
+}
+#carouselMain figure p{
+	font-size: 2.3vw;
+	margin-bottom: 1em;
+}
+#carouselMain figure a{
+	font-size: 2vw;
+	text-decoration: none;
+	text-transform: uppercase;
+	color: white;
+	border: 1px solid white;
+	padding: 0.2em 1em;
+	border-radius: 1rem;
+	transition: 100ms;
+	margin-right: auto;
+}
+#carouselMain figure a:hover{
+	background-color: white;
+	color: black;
+}
+/* -----section portfolio------ */
+#mainPortfolio ul{
+	padding-left: 0;
+}
+#mainPortfolio li{
+	width: calc(100%/3);
+	padding: 0.5em;
+	list-style-type: none;
+	position: relative;
+	top: 0;
+	transition: 0.1s;
+}
+#mainPortfolio figure{
+	position: relative;
+	background-color: black;
+	margin-bottom: 0;
+}
+#mainPortfolio img{
+	opacity: 0.7;
+	transition: 100ms;
+}
+#mainPortfolio a{
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-decoration: none;
+}
+#mainPortfolio a span{
+	color: white;
+	text-transform: uppercase;
+	font-size: 3vw;
+}
+#mainPortfolio li:hover{
+	top: -5px;
+	box-shadow: 2px 5px 5px rgb(170, 170, 170);
+}
+#mainPortfolio li:hover img{
+	opacity: 0.4;
+}
+@media(max-width:992px){
+	#mainPortfolio li{
+		width: 50%;
+	}
+}
+/* -----section shop------ */
+#mainShop h1{
+	text-transform: uppercase;
+}
+#carouselShop h4 {
+	overflow: hidden;
+}
+#carouselShop button{
+	height: 70%;
+}
+
+@media(max-width:992px){
+	#mainShop > figure > img{
+		display: none;
+	}
+	#mainShop > figure > figcaption{
+		display: block;
+	}
+	
+}
+@media(min-width:993px){
+	#mainShop > figure {
+		position: relative;
+		background-color: black;
+	}
+	#mainShop h1{
+		color: white;
+		font-size: 3vw;
+	}
+	#mainShop > figure > img{
+		opacity: 0.8;
+	}
+	#mainShop > figure > figcaption{
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: absolute;
+		top: 0;
+		left: 0;
+		padding-left: 5%;
+		padding-right: 5%;
+	}
+	#mainShop > figure > figcaption > div{
+		width: 50%;
+	}
+	#carouselShop{
+		padding: 1%;
+		background-color: white;
+		opacity: 1;
+	}
+}
+
 /* =====================Contacts Page===================== */
 .contacts {
 	margin-left: 0;

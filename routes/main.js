@@ -3,10 +3,14 @@ const router = express.Router();
 const { mailWriteToUs, mailCallBack } = require('../nodemailer/mail-handlers');
 const catchAsync = require('../utils/catchAsync');
 const User = require('../models/user');
+const Shop = require('../models/shop');
+const Actions = require('../models/action');
 
-router.get('/', (req, res) => {
-	res.render('home');
-});
+router.get('/', catchAsync(async (req, res) => {
+	const shop = await Shop.find({ inStock: true, $expr: { $lt: [0.5, { $rand: {} }] } }, { _id: 1, title: 1, price: 1, images: 1 }).limit(5);
+	const actions = await Actions.find({ isActive: true });
+	res.render('home', {shop, actions});
+}));
 router.get(
 	'/contacts',
 	catchAsync(async (req, res) => {

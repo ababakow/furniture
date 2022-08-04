@@ -1,13 +1,14 @@
 const header = document.querySelector('header');
+const nav = document.querySelector('#navbar');
 
-header.children[0].classList.add('nav-bg');
+nav.classList.add('nav-bg');
 header.classList.remove('sticky-top');
 header.classList.add('fixed-top');
 
 window.addEventListener('scroll', (e) => {
 	if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-		if (header.children[0].classList.contains('nav-bg')) header.children[0].classList.remove('nav-bg');
+		if (nav.classList.contains('nav-bg')) nav.classList.remove('nav-bg');
 	} else {
-		if (!header.children[0].classList.contains('nav-bg')) header.children[0].classList.add('nav-bg');
+		if (!nav.classList.contains('nav-bg')) nav.classList.add('nav-bg');
 	}
 });
