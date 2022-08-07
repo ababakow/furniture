@@ -22,12 +22,13 @@ const statusRoutes = require('./routes/status');
 const actionRoutes = require('./routes/action');
 
 const User = require('./models/user');
-
 const AppError = require('./utils/appError');
 
 const path = require('path');
+
+const sessionConfig = require('./config/session');
+const dbUrl = require('./config/dbUrl');
 ////////////////////////////////////////////////////
-const dbUrl = 'mongodb://localhost:27017/furniture';
 mongoose
 	.connect(dbUrl)
 	.then(() => {
@@ -47,16 +48,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(methodOverride('_method'));
 
-const sessionConfig = {
-	secret: 'firsttimesecret',
-	resave: false,
-	saveUninitialized: true,
-	cookie: {
-		httpOnly: true,
-		expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-		maxAge: 1000 * 60 * 60 * 24 * 7
-	}
-};
 app.use(session(sessionConfig));
 
 app.use(passport.initialize());
