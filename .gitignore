@@ -1,10 +1,21 @@
 node_modules/
 .env
 settings/categories-old.json
-public/imgs/catalog
-public/imgs/shop
-!public/imgs/shop/page/
-public/imgs/orders
-public/imgs/action
+
+public/imgs/catalog/*.jpeg
+public/imgs/catalog/hd/*.jpeg
+public/imgs/catalog/md/*.jpeg
+
+public/imgs/shop/*.jpeg
+public/imgs/shop/hd/*.jpeg
+public/imgs/shop/md/*.jpeg
+
+# public/imgs/orders
+
+public/imgs/action/*.jpeg
+public/imgs/action/hd/*.jpeg
+public/imgs/action/md/*.jpeg
+
 public/imgs/seeds
+
 seeds/
