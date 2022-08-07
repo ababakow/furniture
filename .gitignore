@@ -3,6 +3,8 @@ node_modules/
 settings/categories-old.json
 public/imgs/catalog
 public/imgs/shop
+!public/imgs/shop/page/
 public/imgs/orders
 public/imgs/action
+public/imgs/seeds
 seeds/
