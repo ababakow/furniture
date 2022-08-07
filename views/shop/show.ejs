@@ -46,10 +46,12 @@
             Додати до коишика
           </button>
         </div>
-        <div class="mt-3">
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmDelete">Видалити</button>
-          <a href="/shop/<%=item.id%>/edit" class="btn btn-primary">Редагувати</a>
-        </div>
+        <% if (isAdmin) { %>
+          <div class="mt-3">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmDelete">Видалити</button>
+            <a href="/shop/<%=item.id%>/edit" class="btn btn-primary">Редагувати</a>
+          </div>
+        <% } %> 
       </div>
       <div class="card-body">
         <p class="mb-1"><strong>Опис:</strong></p>

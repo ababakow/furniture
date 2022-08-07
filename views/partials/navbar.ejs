@@ -98,10 +98,12 @@
           <a class="nav-link" href="/contacts">КОНТАКТИ</a>
         </li>
         <!-- --------------------------------------------------- -->
-        <div class="vr d-none d-lg-inline-block text-white mx-3"></div>
-        <li class="nav-item">
-          <a class="nav-link" href="/orders">ЗАМОВЛЕННЯ</a>
-        </li>
+        <% if (isAdmin) { %> 
+          <div class="vr d-none d-lg-inline-block text-white mx-3"></div>
+          <li class="nav-item">
+            <a class="nav-link" href="/orders">ЗАМОВЛЕННЯ</a>
+          </li>
+        <% } %> 
       </ul>
       <!-- ======================================================================= -->
       <div id="nav-phone" class="d-none d-lg-inline navbar-text ">

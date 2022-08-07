@@ -1,7 +1,9 @@
 <% layout('/layouts/boilerplate') %> 
 <div class="d-flex my-3">
         <h1 class="mx-auto align-self-center mb-0">Магазин готової продукції</h1>
-        <a href="/shop/new" class="btn btn-success align-self-center add-new">Додати продукт</a>
+        <% if (isAdmin) { %>
+            <a href="/shop/new" class="btn btn-success align-self-center add-new">Додати продукт</a>
+        <% } %> 
 </div>
 <section id="shop" class="row justify-content-center m-0 p-0">
     <ul class="d-inline-flex flex-wrap p-0 m-0 col-12 col-md-10 offset-md-1">

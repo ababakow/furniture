@@ -2,7 +2,9 @@
 
 <header id="cataloHeader" class="d-block mt-3 mb-1">
     <h1 class="mb-0 text-center"><%= category %></h1>
-    <a href="/catalog/new" class="btn btn-success align-self-center add-new">Додати продукт</a>
+    <% if (isAdmin) { %> 
+        <a href="/catalog/new" class="btn btn-success align-self-center add-new">Додати продукт</a>
+    <% } %> 
     <nav>
         <ul class="nav justify-content-center mt-3">
             <li class="nav-item">

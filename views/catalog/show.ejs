@@ -48,10 +48,12 @@
               <p>Організацію доставки наша компанія повністю бере на себе.</p>
             </div>
           </div>
-          <div class="mt-2">
-            <button type="button" class="btn btn-primary mb-1" data-bs-toggle="modal" data-bs-target="#confirmDelete">Видалити</button>
-            <a href="/catalog/<%=product.id%>/edit" class="btn btn-primary mb-1">Редагувати</a>
-          </div>
+          <% if (isAdmin) { %>
+            <div class="mt-2">
+              <button type="button" class="btn btn-primary mb-1" data-bs-toggle="modal" data-bs-target="#confirmDelete">Видалити</button>
+              <a href="/catalog/<%=product.id%>/edit" class="btn btn-primary mb-1">Редагувати</a>
+            </div>
+          <% } %> 
         </div>
       </div>
       <div class="card-body">

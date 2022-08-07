@@ -70,6 +70,7 @@ app.use((req, res, next) => {
 	res.locals.currentUser = req.user;
 	res.locals.success = req.flash('success');
 	res.locals.error = req.flash('error');
+	res.locals.isAdmin = (req.user && req.user.username === 'admin') ? true : false;
 	next();
 });
 app.use((req, res, next) => {
