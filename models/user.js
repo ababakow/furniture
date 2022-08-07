@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema(
 );
 
 const passportOptions = {
-	usernameQueryFields: [ 'email', 'username' ],
+	usernameQueryFields: [ 'email', 'username'],
 	limitAttempts: true,
 	maxAttempts: 10,
 	unlockInterval: 60 * 60 * 10,

@@ -7,17 +7,17 @@ const multer = require('multer');
 const upload = multer({ storage: storage('./public/imgs/action'), fileFilter });
 
 const catchAsync = require('../utils/catchAsync');
-const { validateAction } = require('../middleware');
+const { validateAction, isLoggedIn, isAdmin } = require('../middleware');
 
 router
 	.route('/')
 	.get(catchAsync(action.index))
-	.post(upload.single('image'), validateAction, catchAsync(action.createAction));
-router.route('/new').get(catchAsync(action.renderNewAction));
+	.post(isLoggedIn, isAdmin, upload.single('image'), validateAction, catchAsync(action.createAction));
+router.route('/new').get(isLoggedIn, isAdmin, catchAsync(action.renderNewAction));
 router
 	.route('/:id')
-	.put(upload.single('image'), validateAction, catchAsync(action.updateAction))
-	.delete(catchAsync(action.deleteAction));
-router.get('/:id/edit', catchAsync(action.renderEditAction));
+	.put(isLoggedIn, isAdmin, upload.single('image'), validateAction, catchAsync(action.updateAction))
+	.delete(isLoggedIn, isAdmin, catchAsync(action.deleteAction));
+router.get('/:id/edit', isLoggedIn, isAdmin, catchAsync(action.renderEditAction));
 
 module.exports = router;

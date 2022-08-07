@@ -8,6 +8,8 @@ const {
 	actionSchema
 } = require('./utils/schemasValidation');
 const AppError = require('./utils/appError');
+const User = require('./models/user');
+const catchAsync = require('./utils/catchAsync');
 
 module.exports.validateProduct = (req, res, next) => {
 	const { error } = catalogSchema.validate(req.body);
@@ -86,3 +88,14 @@ module.exports.isLoggedIn = (req, res, next) => {
 	}
 	next();
 };
+
+module.exports.isAdmin = catchAsync(async (req, res, next) => {
+	const id = req.user._id;
+	const user = await User.findById(id, 'admin');
+	if (!user.admin) {
+		req.flash('error', 'У вас немає прав для виконання цієї дії!');
+		const path = req.originalUrl.slice(0, req.originalUrl.lastIndexOf('/')+1)
+		return res.redirect(path || '/');		
+	}
+	next()
+})
